@@ -5,7 +5,7 @@ package main.java.com.ironSync.model;
  * username, password, level, experience, and streak.
  */
 public class User {
-    private String uniqueId;
+    private int uniqueId;
     private String username;
     private String password;
     private int level;
@@ -30,7 +30,7 @@ public class User {
      * @param experience The user's experience.
      * @param streak     The user's training streak.
      */
-    public User(String uniqueId, String username, String password, int level, int experience, int streak) {
+    public User(int uniqueId, String username, String password, int level, int experience, int streak) {
         this.uniqueId = uniqueId;
         this.username = username;
         this.password = password;
@@ -44,7 +44,7 @@ public class User {
      *
      * @return The unique identifier.
      */
-    public String getUniqueId() {
+    public int getUniqueId() {
         return uniqueId;
     }
 
@@ -98,7 +98,7 @@ public class User {
      *
      * @param uniqueId The new unique identifier.
      */
-    public void setUniqueId(String uniqueId) {
+    public void setUniqueId(int uniqueId) {
         this.uniqueId = uniqueId;
     }
 

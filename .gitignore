@@ -1,2 +1,7 @@
 .idea/
 IronSync.iml
+.gradle/
+build/
+gradle/
+gradlew
+gradlew.bat
