@@ -1,0 +1,6 @@
+[
+  {"name": "Bench press", "muscleGroup": "Chest"},
+  {"name": "Inclined bench press", "muscleGroup": "Chest"},
+  {"name": "Shoulder press", "muscleGroup": "Shoulders"},
+  {"name": "Lateral shoulder raises", "muscleGroup": "Shoulders"}
+]
