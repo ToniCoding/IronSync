@@ -1,12 +1,14 @@
 package main.java.com.ironSync.model;
 
+import java.util.List;
+
 /**
  * Represents a single entry in a workout routine, including the exercise,
  * number of repetitions, and number of sets.
  */
 public class WorkoutEntry {
     private Exercise exercise;
-    private int repetitions;
+    private List<Integer> repetitions;
     private int sets;
 
     /**
@@ -22,7 +24,7 @@ public class WorkoutEntry {
      * @param repetitions Number of repetitions per set.
      * @param sets        Number of sets.
      */
-    public WorkoutEntry(Exercise exercise, int repetitions, int sets) {
+    public WorkoutEntry(Exercise exercise, List<Integer> repetitions, int sets) {
         this.exercise = exercise;
         this.repetitions = repetitions;
         this.sets = sets;
@@ -40,9 +42,9 @@ public class WorkoutEntry {
     /**
      * Gets the number of repetitions per set.
      *
-     * @return Number of repetitions.
+     * @return List of numbers of repetitions for each set.
      */
-    public int getRepetitions() {
+    public List<Integer> getRepetitions() {
         return this.repetitions;
     }
 
@@ -69,7 +71,7 @@ public class WorkoutEntry {
      *
      * @param repetitions The number of repetitions to set.
      */
-    public void setRepetitions(int repetitions) {
+    public void setRepetitions(List<Integer> repetitions) {
         this.repetitions = repetitions;
     }
 

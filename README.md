@@ -76,20 +76,8 @@ Make sure you have Gradle configured correctly to resolve these dependencies.
 Usage
 
 IronSync offers a simple and intuitive way to manage workout data. Here is a basic example of how to use it:
-Loading Default Exercises
 
-ExerciseController exerciseController = new ExerciseController();
-List<Exercise> exercises = exerciseController.loadExercises();
-
-Extracting Exercise Data
-
-List<String> exerciseData = exerciseController.extractExerciseData("Push-Up");
-System.out.println(exerciseData);  // Output: [Push-Up, Push-up exercise description, Chest]
-
-Building a Workout Entry
-
-WorkoutEntryController workoutEntryController = new WorkoutEntryController();
-WorkoutEntry entry = workoutEntryController.createWorkoutEntry("Push-Up", 15, 3);
+--- TBD ---
 
 Project Structure
 
@@ -98,52 +86,41 @@ src/
 ├── main/
 │ ├── java/
 │ │ ├── com/
-│ │ │ ├── ironsync/
+│ │ │ ├── ironSync/
+│ │ │ │ └── config/
+│ │ │ │ │ ├── AppConstants.java
 │ │ │ │ ├── controller/
 │ │ │ │ │ ├── ExerciseController.java
 │ │ │ │ │ ├── WorkoutEntryController.java
-│ │ │ │ │ └── ...
-│ │ │ │ ├── data/
-│ │ │ │ │ ├── ExercisesLoader.java
+│ │ │ │ │ └── WorkoutController.java
 │ │ │ │ ├── model/
 │ │ │ │ │ ├── Exercise.java
+│ │ │ │ │ ├── User.java
+│ │ │ │ │ ├── Workout.java
 │ │ │ │ │ ├── WorkoutEntry.java
-│ │ │ │ └── config/
-│ │ │ │ └── AppConstants.java
+│ │ │ │ ├── data/
+│ │ │ │ │ ├── ExercisesLoader.java
+│ │ │ │ ├── util/
+│ │ │ │ │ ├── ObjectUtils.java
+│ │ ├── com/
+│ │ │ │ └── data/
+│ │ │ │ │ ├── custom_exercises.json
+│ │ │ │ │ ├── default_exercises.json
+│ │ │ │ │ ├── user_workout.json
 └── build.gradle
+└── README.md
 ```
 
 Release Notes
-v1.0.0 (2025-05-01)
+v1.0.0 (Unreleased)
 
-    Initial release of IronSync with core features:
-
-        Exercise loading from a JSON data source.
-
-        Extraction of exercise data (name, description, muscle group).
-
-        Creation of workout entries containing exercises, repetitions, and series.
-
-        Basic error handling added for missing exercise data.
-
-        Object-Oriented design allowing for easy extension of features.
-
-        ExerciseController is now ready to integrate with WorkoutEntryController.
-
-Contributing
-
-We welcome contributions! If you want to improve IronSync, follow these steps:
-
-    Fork the repository.
-
-    Create a new branch (git checkout -b feature-branch).
-
-    Commit your changes (git commit -am 'Add new feature').
-
-    Push to your branch (git push origin feature-branch).
-
-    Create a new Pull Request.
-
-License
-
-IronSync is open-source software released under the MIT License. See the LICENSE file for details.
+- Initial release of IronSync with core features:
+- Exercise loading from a JSON data source.
+- Extraction of exercise data (name, description, muscle group).
+- Creation of workout entries containing exercises, repetitions, and series.
+- Basic error handling added for missing exercise data.
+- Object-Oriented design allowing for easy extension of features.
+- ExerciseController is now ready to integrate with WorkoutEntryController.
+- Exercise now receives number of repetitions as a list of integers that must match the amount of sets.
+- Implemented new attribute trainingTitle to Workout POJO (training title).
+- Updated README.

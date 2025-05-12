@@ -1,11 +1,16 @@
 package main.java.com.ironSync.model;
 
+import main.java.com.ironSync.config.AppConstants;
+
+import java.util.List;
+
 /**
  * Represents a full workout session, including the workout entry (exercise, reps, sets),
  * training notes, and the date of the workout.
  */
 public class Workout {
-    private WorkoutEntry workoutEntry;
+    private List<WorkoutEntry> workoutEntries;
+    private String trainingTitle;
     private String trainingNotes;
     private String trainingDate;
 
@@ -16,14 +21,28 @@ public class Workout {
     }
 
     /**
-     * Constructs a Workout with the specified workout entry, notes, and date.
+     * Constructs a Workout with the specified workout entries, notes, and date.
      *
-     * @param workoutEntry  The workout entry (exercise, reps, sets).
+     * @param workoutEntries  The list of workout entries of the current session.
+     * @param trainingTitle The title of the training session.
      * @param trainingNotes The notes about the training session.
      * @param trainingDate  The date the workout took place.
      */
-    public Workout(WorkoutEntry workoutEntry, String trainingNotes, String trainingDate) {
-        this.workoutEntry = workoutEntry;
+    public Workout(List<WorkoutEntry> workoutEntries, String trainingTitle, String trainingNotes, String trainingDate) {
+        if (workoutEntries.isEmpty()) {
+            throw new IllegalArgumentException("There are no registered exercises in the workout.");
+        }
+
+        if (!trainingTitle.isEmpty() && trainingTitle.length() <= AppConstants.SESSION_TITLE_MAX_CHARACTERS) {
+                throw new IllegalArgumentException("Training title can not be empty or longer than " + AppConstants.SESSION_TITLE_MAX_CHARACTERS);
+        }
+
+        if (!trainingNotes.isEmpty() && trainingNotes.length() <= AppConstants.SESSION_NOTES_MAX_CHARACTERS) {
+            throw new IllegalArgumentException("Training notes can not be empty or longer than" + AppConstants.SESSION_NOTES_MAX_CHARACTERS);
+        }
+
+        this.workoutEntries = workoutEntries;
+        this.trainingTitle = trainingTitle;
         this.trainingNotes = trainingNotes;
         this.trainingDate = trainingDate;
     }
@@ -33,8 +52,17 @@ public class Workout {
      *
      * @return The WorkoutEntry object.
      */
-    public WorkoutEntry getWorkoutEntry() {
-        return this.workoutEntry;
+    public List<WorkoutEntry> getWorkoutEntries() {
+        return this.workoutEntries;
+    }
+
+    /**
+     * Gets the training title.
+     *
+     * @return A string containing the training title.
+     */
+    public String getTrainingTitle() {
+        return this.trainingTitle;
     }
 
     /**
@@ -58,10 +86,19 @@ public class Workout {
     /**
      * Sets the workout entry.
      *
-     * @param workoutEntry The WorkoutEntry to set.
+     * @param workoutEntries The WorkoutEntry to set.
      */
-    public void setWorkoutEntry(WorkoutEntry workoutEntry) {
-        this.workoutEntry = workoutEntry;
+    public void setWorkoutEntry(List<WorkoutEntry> workoutEntries) {
+        this.workoutEntries = workoutEntries;
+    }
+
+    /**
+     * Sets the training title.
+     *
+     * @param trainingTitle The notes to set.
+     */
+    public void setTrainingTitle(String trainingTitle) {
+        this.trainingTitle = trainingTitle;
     }
 
     /**
@@ -90,7 +127,7 @@ public class Workout {
     @Override
     public String toString() {
         return "Workout {" +
-                "workoutEntry = " + workoutEntry +
+                "workoutEntry = " + workoutEntries +
                 ", trainingNotes = " + trainingNotes +
                 ", trainingDate = " + trainingDate +
                 "}";
