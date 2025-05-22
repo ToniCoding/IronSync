@@ -22,17 +22,18 @@ public class ExercisesLoader {
      *         If the file is not found or an error occurs, an empty list is returned.
      */
     public static List<Exercise> loadDefaultExercises() {
-        try {
-            ObjectMapper objMapper = new ObjectMapper();
-            InputStream is = ExercisesLoader.class
-                    .getClassLoader()
-                    .getResourceAsStream(AppConstants.APP_DEFAULT_EXERCISES_DATA_PATH);
+        ObjectMapper objMapper = new ObjectMapper();
+
+        try (InputStream is = ExercisesLoader.class
+                .getClassLoader()
+                .getResourceAsStream(AppConstants.APP_DEFAULT_EXERCISES_DATA_PATH)) {
 
             if (is == null) {
                 System.err.println("Could not find default_exercises.json file.");
+                return Collections.emptyList();
             }
 
-            return objMapper.readValue(is, new TypeReference<>() {});
+            return objMapper.readValue(is, new TypeReference<List<Exercise>>() {});
 
         } catch (Exception e) {
             System.err.println("Error loading default exercises: " + e.getMessage());

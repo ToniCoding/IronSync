@@ -1,13 +1,16 @@
 plugins {
+    id 'application'
     id 'java'
+    id 'com.github.johnrengelman.shadow' version '8.1.1'
 }
 
-group 'org.example'
-version '1.0-SNAPSHOT'
+group = 'com.ironSync'
+version = '1.0-SNAPSHOT'
 
 repositories {
     mavenCentral()
 }
+
 sourceSets {
     main {
         java {
@@ -21,6 +24,9 @@ java {
     targetCompatibility = JavaVersion.VERSION_21
 }
 
+application {
+    mainClass = 'main.java.com.ironSync.Main'
+}
 
 dependencies {
     testImplementation platform('org.junit:junit-bom:5.10.0')
@@ -30,4 +36,12 @@ dependencies {
 
 test {
     useJUnitPlatform()
+}
+
+jar {
+    manifest {
+        attributes(
+                'Main-Class': 'main.java.com.ironSync.Main'
+        )
+    }
 }

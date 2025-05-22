@@ -36,6 +36,7 @@ public class UserController {
         }
     }
 
+    // Build an exercise with user input. Are dependencies needed?
     public WorkoutEntry createNewWorkoutEntry() {
         String exerciseDone = promptText("Introduce the name of the exercise done:");
         List<Integer> numberOfReps = userInputs.repetitionsStringToIntegerList(promptText("Introduce the number of repetitions done:"));
