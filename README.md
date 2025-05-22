@@ -123,4 +123,9 @@ v1.0.0 (Unreleased)
 - ExerciseController is now ready to integrate with WorkoutEntryController.
 - Exercise now receives number of repetitions as a list of integers that must match the amount of sets.
 - Implemented new attribute trainingTitle to Workout POJO (training title).
+- Change path of `resources` as it was not correct.
+- Added missing description for default exercises.
+- Main is now the start point for the program.
+- Added the module for fat jars in order to include external dependencies in compiled jar.
+- Added manifest to gradle.build for Gradle to locate the main class.
 - Updated README.

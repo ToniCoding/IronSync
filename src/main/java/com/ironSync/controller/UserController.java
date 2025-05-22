@@ -24,7 +24,7 @@ public class UserController {
 
     private int promptInt(String promptMessage) {
         while (true) {
-            promptText(promptMessage);
+            System.out.print(promptMessage + " ");
             String input = scanner.nextLine().trim();
             try {
                 int value = Integer.parseInt(input);
@@ -36,7 +36,6 @@ public class UserController {
         }
     }
 
-    // Build an exercise with user input. Are dependencies needed?
     public WorkoutEntry createNewWorkoutEntry() {
         String exerciseDone = promptText("Introduce the name of the exercise done:");
         List<Integer> numberOfReps = userInputs.repetitionsStringToIntegerList(promptText("Introduce the number of repetitions done:"));
