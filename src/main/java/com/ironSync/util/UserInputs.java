@@ -8,10 +8,21 @@ import java.util.Objects;
 import java.util.stream.Collectors;
 import java.util.Scanner;
 
+/**
+ * Utility class to handle user input from the console,
+ * including parsing, validation, and prompt display.
+ */
 public class UserInputs {
     private final Scanner scanner = new Scanner(System.in);
     private final NumberUtils numberUtils = new NumberUtils();
 
+    /**
+     * Converts a string of repetitions separated by commas or spaces into a list of positive integers.
+     *
+     * @param repetitionsList A string containing repetitions separated by commas or whitespace.
+     * @return A list of positive integers representing the repetitions.
+     * @throws IllegalArgumentException if the input contains invalid number formats.
+     */
     public List<Integer> repetitionsStringToIntegerList(String repetitionsList) {
         if (repetitionsList == null || repetitionsList.isBlank()) {
             return List.of();
@@ -29,6 +40,13 @@ public class UserInputs {
         }
     }
 
+    /**
+     * Prompts the user for text input, requiring a non-empty string.
+     * The input is trimmed and converted to lowercase.
+     *
+     * @param promptMessage The message displayed to the user.
+     * @return A non-empty, trimmed, lowercase string input from the user.
+     */
     public String promptText(String promptMessage) {
         while (true) {
             System.out.print(promptMessage + " ");
@@ -40,6 +58,13 @@ public class UserInputs {
         }
     }
 
+    /**
+     * Prompts the user for a positive integer input.
+     * Keeps prompting until a valid positive integer is entered.
+     *
+     * @param promptMessage The message displayed to the user.
+     * @return A positive integer input from the user.
+     */
     public int promptInt(String promptMessage) {
         while (true) {
             System.out.print(promptMessage + " ");
@@ -54,6 +79,13 @@ public class UserInputs {
         }
     }
 
+    /**
+     * Displays a question with enumerated options and returns the formatted string for display.
+     *
+     * @param questionToUser The question to be displayed before the options.
+     * @param availableOptions A comma-separated string of available options.
+     * @return A string showing the question followed by numbered options, each on its own line.
+     */
     public String promptTextWithOptions(String questionToUser, String availableOptions) {
         List<String> availableOptionsArray = Arrays.stream(availableOptions.split(","))
                 .map(String::trim)
@@ -71,12 +103,22 @@ public class UserInputs {
         return userVisibleOptions.toString();
     }
 
+    /**
+     * Validates the user input against a list of two valid options.
+     * Returns true if the input matches the first option, false if it matches the second.
+     *
+     * @param validOptions A comma-separated string containing exactly two valid options.
+     * @param userInput The user's input to validate.
+     * @return True if userInput equals the first valid option; false otherwise.
+     * @throws Exceptions.InvalidOptionException if userInput is not one of the valid options,
+     *                               or if more than two options are provided.
+     */
     public boolean processUserInputFromTwoOptions(String validOptions, String userInput) {
         List<String> validOptionsList = Arrays.stream(validOptions.split(","))
                 .map(String::trim)
                 .toList();
 
-        if (validOptionsList.isEmpty()) {
+        if (validOptionsList.size() != 2) {
             throw new Exceptions.InvalidOptionException("There were given more than two valid options.");
         }
 
