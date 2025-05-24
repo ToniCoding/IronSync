@@ -17,8 +17,8 @@ public class WorkoutEntryController {
     }
 
     public WorkoutEntry workoutEntryBuilder (String exerciseDone, List<Integer> nReps, int nSets) {
-        if (verifyRepetitionsLength(nReps, nSets)) {
-            throw new IllegalArgumentException("Length of reps list must match number of sets.");
+        if (!verifyRepetitionsLength(nReps, nSets)) {
+            throw new IllegalArgumentException("Length of repetitions list must match number of sets.");
         }
 
         return new WorkoutEntry(getExerciseDetails(exerciseDone), nReps, nSets);

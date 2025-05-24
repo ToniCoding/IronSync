@@ -37,8 +37,8 @@ public class ExerciseController {
             if (exercise.getName().equals(requestedExerciseData)) {
                 exerciseDataExtractList.addAll(List.of(
                         exercise.getName(),
-                        exercise.getDescription(),
-                        exercise.getMuscleGroup()));
+                        exercise.getMuscleGroup(),
+                        exercise.getDescription()));
             }
         }
 

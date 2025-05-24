@@ -128,4 +128,4 @@ v1.0.0 (Unreleased)
 - Main is now the start point for the program.
 - Added the module for fat jars in order to include external dependencies in compiled jar.
 - Added manifest to gradle.build for Gradle to locate the main class.
-- Updated README.
+- Fixed a bug where `Exercise` object was built twice from `UserController` and from `WorkoutEntryController`. The object is now only built from `WEC` to clear responsibilities.

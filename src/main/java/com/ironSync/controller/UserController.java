@@ -1,48 +1,44 @@
 package main.java.com.ironSync.controller;
 
-import main.java.com.ironSync.model.Exercise;
+import main.java.com.ironSync.model.Workout;
 import main.java.com.ironSync.model.WorkoutEntry;
 import main.java.com.ironSync.util.UserInputs;
+import main.java.com.ironSync.util.ParseDate;
 
+import java.util.ArrayList;
 import java.util.List;
-import java.util.Scanner;
 
 public class UserController {
-    private final Scanner scanner = new Scanner(System.in);
     private final UserInputs userInputs = new UserInputs();
+    private final ParseDate dateParser = new ParseDate();
 
-    private String promptText(String promptMessage) {
-        while (true) {
-            System.out.print(promptMessage + " ");
-            String input = scanner.nextLine().trim().toLowerCase();
+    public WorkoutEntry createNewWorkoutEntry() {
+        String exerciseDone = userInputs.promptText("Introduce the name of the exercise done:");
+        List<Integer> numberOfReps = userInputs.repetitionsStringToIntegerList(userInputs.promptText("Introduce the number of repetitions done:"));
+        int numberOfSets = userInputs.promptInt("Introduce the number of sets done:");
 
-            if (!input.isEmpty()) return input;
-
-            System.out.println("Text cannot be empty, try again.");
-        }
+        return new WorkoutEntryController().workoutEntryBuilder(exerciseDone, numberOfReps, numberOfSets);
     }
 
-    private int promptInt(String promptMessage) {
+    public List<WorkoutEntry> buildWorkoutEntryList() {
+        List<WorkoutEntry> workoutEntries = new ArrayList<WorkoutEntry>();
+        
         while (true) {
-            System.out.print(promptMessage + " ");
-            String input = scanner.nextLine().trim();
-            try {
-                int value = Integer.parseInt(input);
-                if (value > 0) return value;
-                System.out.println("Number must be higher than 0.");
-            } catch (NumberFormatException e) {
-                System.out.println("Introduce a valid number.");
+            workoutEntries.add(createNewWorkoutEntry());
+
+            System.out.println("Do you want to add another workout entry? ");
+            String userDecision = userInputs.promptTextWithOptions("Do you want to add another workout entry? (Y/n)", "y,n");
+
+            if (userInputs.processUserInputFromTwoOptions("y,n", userDecision)) {
+                return workoutEntries;
             }
         }
     }
 
-    public WorkoutEntry createNewWorkoutEntry() {
-        String exerciseDone = promptText("Introduce the name of the exercise done:");
-        List<Integer> numberOfReps = userInputs.repetitionsStringToIntegerList(promptText("Introduce the number of repetitions done:"));
-        int numberOfSets = promptInt("Introduce the number of sets done:");
+    public Workout createNewWorkout(List<WorkoutEntry> workoutEntries) {
+        String workoutTitle = userInputs.promptText("Introduce the name of the workout: ");
+        String workoutNotes = userInputs.promptText("Introduce the notes for the workout: ");
 
-        Exercise exerciseDoneConverted = new ExerciseController().exerciseBuilder(exerciseDone);
-
-        return new WorkoutEntry(exerciseDoneConverted, numberOfReps, numberOfSets);
+        return new WorkoutController().workoutBuilder(workoutEntries, workoutTitle, workoutNotes, dateParser.getCurrentDateTimeFormatted(1));
     }
 }
