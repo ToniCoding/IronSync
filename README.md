@@ -1,85 +1,49 @@
-# IronSync – The Strength Operating System
+# IronSync - The Strength Operating System
 
-IronSync is a powerful fitness application designed to manage and track workouts efficiently. With a focus on strength training, this application allows users to load exercises, track their progress, and organize workout entries. It is built with flexibility and scalability in mind, ensuring seamless user experience for all fitness enthusiasts.
+IronSync is a powerful fitness application designed to manage and track workouts throughout a lifter's journey. The app allows users to register and monitor their progress with ease. It offers a wide variety of exercises that can be quickly added to any training session. And if the user wants to create a custom or non-existing exercise, they can do so effortlessly!
 
 ---
 
-## Table of Contents
+## Table of contents
 
 1. [Project Overview](#project-overview)
 2. [Features](#features)
-3. [Getting Started](#getting-started)
-4. [Dependencies](#dependencies)
-5. [Usage](#usage)
-6. [Project Structure](#project-structure)
-7. [Release Notes](#release-notes)
-8. [Contributing](#contributing)
-9. [License](#license)
-
----
+3. [Dependencies](#dependencies)
+4. [Project Structure](#project-structure)
+5. [License](#license)
 
 ## Project Overview
 
-IronSync is a system built for strength training enthusiasts who want to track and optimize their workouts. The application allows users to:
+IronSync is a system designed for training enthusiasts who want to track and optimize their progress effortlessly.
 
-- Load exercises from predefined data sources.
-- Extract relevant data about exercises (name, description, muscle group).
-- Create custom workout entries composed of exercises, repetitions, and series.
-- Track and analyze progress over time.
-
----
+The application loads predefined exercises from a data source, extracts relevant data from user workouts, and analyzes this data over time to provide meaningful insights.
 
 ## Features
 
-- **Exercise Management**: Load a list of default exercises from a data source, extract detailed exercise data, and build custom `Exercise` objects.
-- **Workout Entry System**: Track workout entries consisting of specific exercises, repetitions, and series. Each entry is connected to a particular exercise with corresponding metrics.
-- **Data Extraction**: Efficiently extract exercise details (name, description, muscle group) to use within different parts of the application.
-- **Custom Workouts**: Build workout entries dynamically based on user input, including the name of the exercise, number of repetitions, and series.
+- **Exercise Management**: Users have access to a wide variety of preloaded exercises to include in their workouts.
 
----
+- **Custom Exercise Creation**: Users can create their own custom exercises, which will be available alongside the default ones during workout sessions.
 
-## Getting Started
+- **Workout Entry System**: A streamlined system allows users to easily log and manage their workouts and exercises.
 
-To get started with IronSync, follow these steps:
+- **Data Analysis**: IronSync analyzes completed workouts to generate metrics and performance insights over time.
 
-### 1. Clone the Repository
+- **Personalized Tips**: Based on workout data and post-session feedback, IronSync provides personalized tips tailored to the user’s performance and recovery status.
 
-```bash
-git clone https://github.com/yourusername/ironSync.git
-cd ironSync
-```
+## Dependencies
 
-2. Set up Dependencies
+The following dependencies and tools are required for IronSync to run properly:
 
-IronSync requires Java 11 or later to run. You also need Gradle for build automation.
+- Jackson for JSON parsing:
+  - com.fasterxml.jackson.core
+  - com.fasterxml.jackson.databind
+- Gradle for build automation.
 
-    Install Java: Make sure you have Java 11 or later installed.
+Make sure you configure Gradle correctly to resolve these dependencies.
 
-    Install Gradle: Follow the installation instructions for Gradle on Gradle's official site.
+## Project structure
 
-3. Build and Run
-
-Once you have the repository cloned and dependencies set up, you can build and run the project with Gradle:
-
-gradle clean build
-gradle run
-
-Dependencies
-
-IronSync uses the following libraries:
-
-    Jackson for JSON parsing: com.fasterxml.jackson.core and com.fasterxml.jackson.databind
-
-    Gradle for build automation.
-
-Make sure you have Gradle configured correctly to resolve these dependencies.
-Usage
-
-IronSync offers a simple and intuitive way to manage workout data. Here is a basic example of how to use it:
-
---- TBD ---
-
-Project Structure
+This is how IronSync is built from the core.
 
 ```text
 src/
@@ -93,6 +57,8 @@ src/
 │ │ │ │ │ ├── ExerciseController.java
 │ │ │ │ │ ├── WorkoutEntryController.java
 │ │ │ │ │ └── WorkoutController.java
+│ │ │ │ ├── exceptions/
+│ │ │ │ │ ├── Exceptions.java
 │ │ │ │ ├── model/
 │ │ │ │ │ ├── Exercise.java
 │ │ │ │ │ ├── User.java
@@ -101,7 +67,12 @@ src/
 │ │ │ │ ├── data/
 │ │ │ │ │ ├── ExercisesLoader.java
 │ │ │ │ ├── util/
+│ │ │ │ │ ├── NumberUtils.java
 │ │ │ │ │ ├── ObjectUtils.java
+│ │ │ │ │ ├── ParseDate.java
+│ │ │ │ │ ├── UserInputs.java
+│ │ │ │ ├── view/
+│ │ │ │ │ ├── WorkoutView.java
 │ │ ├── com/
 │ │ │ │ └── data/
 │ │ │ │ │ ├── custom_exercises.json
@@ -109,23 +80,11 @@ src/
 │ │ │ │ │ ├── user_workout.json
 └── build.gradle
 └── README.md
+└── RELEASE_NOTES.md
 ```
 
-Release Notes
-v1.0.0 (Unreleased)
+## Release notes
+To view the release notes, please refer to the *RELEASE_NOTES* file.
 
-- Initial release of IronSync with core features:
-- Exercise loading from a JSON data source.
-- Extraction of exercise data (name, description, muscle group).
-- Creation of workout entries containing exercises, repetitions, and series.
-- Basic error handling added for missing exercise data.
-- Object-Oriented design allowing for easy extension of features.
-- ExerciseController is now ready to integrate with WorkoutEntryController.
-- Exercise now receives number of repetitions as a list of integers that must match the amount of sets.
-- Implemented new attribute trainingTitle to Workout POJO (training title).
-- Change path of `resources` as it was not correct.
-- Added missing description for default exercises.
-- Main is now the start point for the program.
-- Added the module for fat jars in order to include external dependencies in compiled jar.
-- Added manifest to gradle.build for Gradle to locate the main class.
-- Fixed a bug where `Exercise` object was built twice from `UserController` and from `WorkoutEntryController`. The object is now only built from `WEC` to clear responsibilities.
+## License
+Licensed under the GPL-3.0. Make sure to review the license before use.
