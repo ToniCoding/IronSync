@@ -1,6 +1,6 @@
-package main.java.com.ironSync.storage;
+package com.ironSync.storage;
 
-import main.java.com.ironSync.util.ObjectUtils;
+import com.ironSync.util.ObjectUtils;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;

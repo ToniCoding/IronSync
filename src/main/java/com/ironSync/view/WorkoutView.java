@@ -1,4 +1,4 @@
-package main.java.com.ironSync.view;
+package com.ironSync.view;
 
 public class WorkoutView {
 }

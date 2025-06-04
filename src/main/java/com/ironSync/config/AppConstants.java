@@ -1,4 +1,4 @@
-package main.java.com.ironSync.config;
+package com.ironSync.config;
 
 public final class AppConstants {
     public static final String APP_DEFAULT_EXERCISES_DATA_PATH = "data/default_exercises.json";

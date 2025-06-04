@@ -1,9 +1,9 @@
-package main.java.com.ironSync.controller;
+package com.ironSync.controller;
 
-import main.java.com.ironSync.model.Workout;
-import main.java.com.ironSync.model.WorkoutEntry;
-import main.java.com.ironSync.util.UserInputs;
-import main.java.com.ironSync.util.ParseDate;
+import com.ironSync.model.Workout;
+import com.ironSync.util.ParseDate;
+import com.ironSync.model.WorkoutEntry;
+import com.ironSync.util.UserInputs;
 
 import java.util.ArrayList;
 import java.util.List;

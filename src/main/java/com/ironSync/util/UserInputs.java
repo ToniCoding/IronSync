@@ -1,6 +1,6 @@
-package main.java.com.ironSync.util;
+package com.ironSync.util;
 
-import main.java.com.ironSync.exceptions.Exceptions;
+import com.ironSync.exceptions.Exceptions;
 
 import java.util.List;
 import java.util.Arrays;

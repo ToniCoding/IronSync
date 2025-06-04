@@ -1,4 +1,4 @@
-package main.java.com.ironSync.util;
+package com.ironSync.util;
 
 import java.util.List;
 import java.util.stream.Collectors;

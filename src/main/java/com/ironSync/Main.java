@@ -1,6 +1,6 @@
-package main.java.com.ironSync;
+package com.ironSync;
 
-import main.java.com.ironSync.controller.UserController;
+import com.ironSync.controller.UserController;
 
 public class Main {
     public static void main(String[] args) {

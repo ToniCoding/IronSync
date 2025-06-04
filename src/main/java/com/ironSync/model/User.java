@@ -1,4 +1,4 @@
-package main.java.com.ironSync.model;
+package com.ironSync.model;
 
 /**
  * Represents a user in the system, containing personal information such as their unique identifier,

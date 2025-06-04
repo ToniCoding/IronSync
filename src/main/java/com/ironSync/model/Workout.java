@@ -1,6 +1,6 @@
-package main.java.com.ironSync.model;
+package com.ironSync.model;
 
-import main.java.com.ironSync.config.AppConstants;
+import com.ironSync.config.AppConstants;
 
 import java.util.List;
 

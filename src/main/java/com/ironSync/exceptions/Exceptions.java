@@ -1,4 +1,4 @@
-package main.java.com.ironSync.exceptions;
+package com.ironSync.exceptions;
 
 /**
  * Container class for custom exceptions used in the application.

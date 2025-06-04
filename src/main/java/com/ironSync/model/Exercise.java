@@ -1,4 +1,4 @@
-package main.java.com.ironSync.model;
+package com.ironSync.model;
 
 /**
  * Represents an exercise, including its name, the primary muscle group it targets,

@@ -1,4 +1,4 @@
-package main.java.com.ironSync.util;
+package com.ironSync.util;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
