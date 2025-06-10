@@ -1,6 +1,9 @@
 package com.ironSync.storage;
 
+import com.ironSync.config.AppConstants;
 import com.ironSync.util.ObjectUtils;
+
+import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -13,7 +16,7 @@ import java.io.IOException;
 public class FileManager {
 
     /** The base directory where the storage file is saved. */
-    private String baseDirectory;
+    private final String baseDirectory = AppConstants.USER_WORKOUT_DATA_PATH;
 
     /** Indicates if the storage should have a pretty-print format (not used in this code). */
     private boolean prettyPrint;
@@ -38,7 +41,19 @@ public class FileManager {
         File filePath = new File(baseDirectory);
 
         try {
+            File parentDir = filePath.getParentFile();
+
+            if (this.checkIfFileExists()) {
+                return false;
+            }
+
+            if (!parentDir.exists() && !parentDir.mkdirs()) {
+                System.err.println("Couldn't create directories.");
+                return false;
+            }
+
             return filePath.createNewFile();
+
         } catch (IOException ioException) {
             System.err.println("Error creating file: " + ioException.getMessage());
             return false;
@@ -52,14 +67,28 @@ public class FileManager {
      * @return true if the data is written successfully, false if an error occurred.
      */
     private boolean writeToFile(String contents) {
-        try (FileWriter storageFile = new FileWriter(baseDirectory)) {
-            storageFile.write(contents);
-            return true;
+        File file = new File(baseDirectory);
+
+        try {
+            if (!file.exists() && !createStorageFile()) {
+                System.err.println("Couldn't create storage file.");
+                return false;
+            }
+
+            try (BufferedWriter storageFile = new BufferedWriter(new FileWriter(file, true))) {
+                storageFile.write(",");
+                storageFile.newLine();
+                storageFile.write(contents);
+
+                return true;
+            }
+
         } catch (IOException ioException) {
             System.err.println("Error writing to file: " + ioException.getMessage());
             return false;
         }
     }
+
 
     /**
      * Registers the serialized data of the provided object in a file.

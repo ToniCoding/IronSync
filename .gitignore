@@ -3,6 +3,7 @@ IronSync.iml
 .gradle/
 build/
 gradle/
+user_data/
 out/
 gradlew
 gradlew.bat

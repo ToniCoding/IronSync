@@ -19,3 +19,18 @@
 
 ### Changed
 - Refactor of `createNewWorkoutEntry` to avoid creating duplicate Exercise instances.
+
+## [1.1.0] - Unreleased
+
+### Added
+- Added new directory called `user_data` to store workouts and data from the user.
+
+### Fixed
+- Fixed `createStorageFile` as it was not checking correctly if the `user_data` directory was being correctly created.
+
+### Changed
+- The constant `USER_WORKOUT_DATA_PATH` at *AppConstants* now points to the newly created directory `user_data`.
+- The method `writeToFile` no longer uses *FileWriter*, now uses *BufferedWriter* to be more efficient.
+- Updated build.gradle to mark as sources root directory `java` and not `src`.
+- Updated README.
+- Updated .gitignore.
