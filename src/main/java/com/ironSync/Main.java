@@ -8,6 +8,7 @@ public class Main {
         UserController userController = new UserController();
         Workout createdWorkoutEntry = userController.createNewWorkout();
 
+
         System.out.println(createdWorkoutEntry);
     }
 }

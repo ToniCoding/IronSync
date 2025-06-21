@@ -24,10 +24,14 @@
 
 ### Added
 - Added new directory called `user_data` to store workouts and data from the user.
+- Added `WorkoutDTO` a DTO dedicated to allocate data that is going to be serialized and transferred to JSON file.
+- Added `JsonSerializer` a class dedicated to serialize DTOs into JSON with a correct structure.
+- Added a new method to serialize and register an object into the user workout JSON file (file made for workout persistence).
 
 ### Fixed
 - Fixed `createStorageFile` as it was not checking correctly if the `user_data` directory was being correctly created.
 - Fixed `Workout` constructor length checks as it was checking that the character were shorter than the length rules.
+- Fixed a bug where if the user wanted to register another exercise, the program would throw an exception.
 
 ### Changed
 - The constant `USER_WORKOUT_DATA_PATH` at *AppConstants* now points to the newly created directory `user_data`.
@@ -38,3 +42,6 @@
 - The register of the exercise is now done in `UserController`.
 - Updated README.
 - Updated .gitignore.
+
+### Pending tasks
+- 

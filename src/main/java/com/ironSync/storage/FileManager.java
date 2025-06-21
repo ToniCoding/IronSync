@@ -1,6 +1,7 @@
 package com.ironSync.storage;
 
 import com.ironSync.config.AppConstants;
+import com.ironSync.dto.WorkoutDTO;
 import com.ironSync.util.ObjectUtils;
 
 import java.io.BufferedWriter;
@@ -17,6 +18,7 @@ public class FileManager {
 
     /** The base directory where the storage file is saved. */
     private final String baseDirectory = AppConstants.USER_WORKOUT_DATA_PATH;
+    private final JsonSerializer jsonSerializer = new JsonSerializer();
 
     /** Indicates if the storage should have a pretty-print format (not used in this code). */
     private boolean prettyPrint;
@@ -89,6 +91,9 @@ public class FileManager {
         }
     }
 
+    public void registerSerializedWorkout(WorkoutDTO objectToSerialize) {
+        this.writeToFile(jsonSerializer.serialize(objectToSerialize));
+    }
 
     /**
      * Registers the serialized data of the provided object in a file.
