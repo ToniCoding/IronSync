@@ -46,6 +46,7 @@ public class WorkoutEntryController {
         if (!verifyRepetitionsLength(nReps, nSets)) {
             throw new IllegalArgumentException("Length of repetitions list must match number of sets.");
         }
+
         return new WorkoutEntry(getExerciseDetails(exerciseDone), nReps, nSets);
     }
 }

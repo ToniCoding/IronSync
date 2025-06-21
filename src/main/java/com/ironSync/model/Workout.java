@@ -33,11 +33,11 @@ public class Workout {
             throw new IllegalArgumentException("There are no registered exercises in the workout.");
         }
 
-        if (!trainingTitle.isEmpty() && trainingTitle.length() <= AppConstants.SESSION_TITLE_MAX_CHARACTERS) {
-                throw new IllegalArgumentException("Training title can not be empty or longer than " + AppConstants.SESSION_TITLE_MAX_CHARACTERS);
+        if (trainingTitle.length() >= AppConstants.SESSION_TITLE_MAX_CHARACTERS) {
+            throw new IllegalArgumentException("Training title can not be empty or longer than " + AppConstants.SESSION_TITLE_MAX_CHARACTERS);
         }
 
-        if (!trainingNotes.isEmpty() && trainingNotes.length() <= AppConstants.SESSION_NOTES_MAX_CHARACTERS) {
+        if (trainingNotes.length() >= AppConstants.SESSION_NOTES_MAX_CHARACTERS) {
             throw new IllegalArgumentException("Training notes can not be empty or longer than" + AppConstants.SESSION_NOTES_MAX_CHARACTERS);
         }
 

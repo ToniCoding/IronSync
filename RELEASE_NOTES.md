@@ -27,10 +27,14 @@
 
 ### Fixed
 - Fixed `createStorageFile` as it was not checking correctly if the `user_data` directory was being correctly created.
+- Fixed `Workout` constructor length checks as it was checking that the character were shorter than the length rules.
 
 ### Changed
 - The constant `USER_WORKOUT_DATA_PATH` at *AppConstants* now points to the newly created directory `user_data`.
 - The method `writeToFile` no longer uses *FileWriter*, now uses *BufferedWriter* to be more efficient.
 - Updated build.gradle to mark as sources root directory `java` and not `src`.
+- User is no longer required to prompt the number of sets as it's automatically calculated with repetitions.
+- Refactor `UserController.createNewWorkout` to not receive arguments and build the workout entry list inside it. Makes Main clearer.
+- The register of the exercise is now done in `UserController`.
 - Updated README.
 - Updated .gitignore.

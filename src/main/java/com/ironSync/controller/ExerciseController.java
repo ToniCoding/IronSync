@@ -55,6 +55,10 @@ public class ExerciseController {
     public Exercise exerciseBuilder(String exerciseDone) {
         List<String> exerciseData = extractExerciseData(exerciseDone);
 
+        if (exerciseData.isEmpty()) {
+            throw new IllegalArgumentException("The selected exercise does not exist.");
+        }
+
         return new Exercise(exerciseData.get(0), exerciseData.get(1), exerciseData.get(2));
     }
 }
