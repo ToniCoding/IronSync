@@ -27,6 +27,7 @@
 - Added `WorkoutDTO`, a dedicated Data Transfer Object for encapsulating workout data to be serialized into JSON.
 - Implemented `JsonSerializer`, a utility class responsible for converting DTOs into properly structured JSON.
 - Added a method to serialize and persist workout data into a JSON file inside the `user_data` directory.
+- Added "Pending" and "Known issues" sections to README.
 
 ### Fixed
 - Corrected `createStorageFile` logic to properly check whether the `user_data` directory is being created successfully.
@@ -41,6 +42,14 @@
 - Refactored `UserController.createNewWorkout` to handle workout entry creation internally, improving clarity in `Main`.
 - Moved exercise registration logic into `UserController` for better cohesion.
 - Updated `README.md` and `.gitignore` accordingly.
+- Minor changes to `FileManager`.
+
+### Removed
+- Removed the deprecated method `registered_data` in `FileManager`.
+- Removed `ObjectUtils` class.
+
+### Known issues
+- Time is set to null because the data transferred to `WorkoutDTO` is the current datetime, and it's not separated.
 
 ### Pending tasks
 - Refactor code to inject dependencies (like builder/controller classes) via constructor or arguments instead of direct instantiation with `new`, to improve modularity and testability.

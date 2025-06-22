@@ -2,7 +2,6 @@ package com.ironSync.storage;
 
 import com.ironSync.config.AppConstants;
 import com.ironSync.dto.WorkoutDTO;
-import com.ironSync.util.ObjectUtils;
 
 import java.io.BufferedWriter;
 import java.io.File;
@@ -10,23 +9,25 @@ import java.io.FileWriter;
 import java.io.IOException;
 
 /**
- * A class that handles data storage operations in files.
- * Provides methods for checking if a file exists, creating a storage file,
- * writing data to a file, and registering serialized objects in a file.
+ * A utility class for managing file-based storage of user workout data.
+ * This class provides methods to:
+ * - Check if the storage file exists
+ * - Create the storage file and its parent directories if necessary
+ * - Write serialized data to the file
+ * - Register WorkoutDTO objects by serializing and saving them
  */
 public class FileManager {
 
-    /** The base directory where the storage file is saved. */
+    /** Path to the file where serialized workout data is stored. */
     private final String baseDirectory = AppConstants.USER_WORKOUT_DATA_PATH;
+
+    /** Serializer used to convert objects into JSON strings. */
     private final JsonSerializer jsonSerializer = new JsonSerializer();
 
-    /** Indicates if the storage should have a pretty-print format (not used in this code). */
-    private boolean prettyPrint;
-
     /**
-     * Checks if the storage file exists in the specified location.
+     * Checks whether the storage file exists and is not a directory.
      *
-     * @return true if the file exists and is not a directory, false otherwise.
+     * @return true if the file exists and is a regular file; false otherwise
      */
     private boolean checkIfFileExists() {
         File filePath = new File(baseDirectory);
@@ -34,10 +35,11 @@ public class FileManager {
     }
 
     /**
-     * Creates a new file at the location specified by {@code baseDirectory}.
-     * If the file already exists, no action is performed.
+     * Creates the storage file at the location defined by baseDirectory.
+     * If the file already exists, no action is taken.
+     * Creates parent directories if they do not exist.
      *
-     * @return true if the file is created successfully, false if it could not be created.
+     * @return true if the file was successfully created; false otherwise
      */
     private boolean createStorageFile() {
         File filePath = new File(baseDirectory);
@@ -63,10 +65,12 @@ public class FileManager {
     }
 
     /**
-     * Writes the provided contents to the file specified by {@code baseDirectory}.
+     * Writes the given content to the storage file.
+     * If the file does not exist, it will be created first.
+     * Adds a comma and newline before the content to support appending in JSON array format.
      *
-     * @param contents The contents to write to the file.
-     * @return true if the data is written successfully, false if an error occurred.
+     * @param contents The content to write, typically a JSON string
+     * @return true if the content was successfully written; false if an error occurred
      */
     private boolean writeToFile(String contents) {
         File file = new File(baseDirectory);
@@ -91,26 +95,14 @@ public class FileManager {
         }
     }
 
-    public void registerSerializedWorkout(WorkoutDTO objectToSerialize) {
-        this.writeToFile(jsonSerializer.serialize(objectToSerialize));
-    }
-
     /**
-     * Registers the serialized data of the provided object in a file.
-     * First, it serializes the object to JSON format and then writes the JSON to the storage file.
+     * Serializes a WorkoutDTO object and appends it to the storage file.
      *
-     * @param objectToSave The object to be saved.
-     * @return true if the data is registered successfully, false if an error occurred.
+     * @param objectToSerialize The workout object to serialize and save
      */
-    public boolean registerData(Object objectToSave) {
-        ObjectUtils objectUtils = new ObjectUtils();
-        String serializedObject = objectUtils.objectSerialization(objectToSave);
-
-        if (!writeToFile(serializedObject)) {
-            System.err.println("Error writing data to file.");
-            return false;
+    public void registerSerializedWorkout(WorkoutDTO objectToSerialize) {
+        if (this.writeToFile(jsonSerializer.serialize(objectToSerialize))) {
+            System.out.println("Successfully serialized and registered workout");
         }
-
-        return true;
     }
 }

@@ -8,20 +8,20 @@ import com.ironSync.storage.FileManager;
 import java.util.List;
 
 /**
- * Controller responsible for creating Workout objects.
+ * Controller responsible for constructing Workout objects and registering them for storage.
  */
 public class WorkoutController {
 
     private final FileManager fileManager = new FileManager();
 
     /**
-     * Builds a new {@link Workout} instance from the provided parameters.
+     * Creates a new Workout object using the provided data and registers it for storage.
      *
-     * @param workoutEntries List of {@link WorkoutEntry} objects included in the workout.
-     * @param workoutTitle   Title or name of the workout.
-     * @param workoutNotes   Additional notes or comments about the workout.
-     * @param workoutDate    Date of the workout as a formatted string.
-     * @return A new Workout object constructed with the provided data.
+     * @param workoutEntries List of WorkoutEntry objects to include in the workout
+     * @param workoutTitle   The title or name of the workout
+     * @param workoutNotes   Optional notes or comments about the workout
+     * @param workoutDate    The workout date as a formatted string
+     * @return A new Workout object built with the specified data
      */
     public Workout workoutBuilder(List<WorkoutEntry> workoutEntries, String workoutTitle, String workoutNotes, String workoutDate) {
         Workout createdWorkout = new Workout(workoutEntries, workoutTitle, workoutNotes, workoutDate);
@@ -31,6 +31,11 @@ public class WorkoutController {
         return new Workout(workoutEntries, workoutTitle, workoutNotes, workoutDate);
     }
 
+    /**
+     * Registers a WorkoutDTO by serializing and saving it to persistent storage.
+     *
+     * @param workoutDTO The WorkoutDTO to register
+     */
     public void registerWorkout(WorkoutDTO workoutDTO) {
         fileManager.registerSerializedWorkout(workoutDTO);
     }

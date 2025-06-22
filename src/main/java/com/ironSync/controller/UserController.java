@@ -12,8 +12,8 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 /**
- * Controller class responsible for handling user input related to workouts and workout entries.
- * It interacts with utility classes to gather data and creates domain objects accordingly.
+ * Handles user interactions related to workouts and workout entries.
+ * This controller gathers user input and constructs domain objects such as Workout and WorkoutEntry.
  */
 public class UserController {
     private final Scanner scanner = new Scanner(System.in);
@@ -21,12 +21,12 @@ public class UserController {
     private final ParseDate dateParser = new ParseDate();
 
     /**
-     * Prompts the user to input details for a single workout entry
-     * and creates a new {@link WorkoutEntry} object based on that data.
+     * Prompts the user to input data for a single workout entry and returns a new WorkoutEntry object.
+     * Ensures that the exercise name is unique within the current workout.
      *
-     * @return a new WorkoutEntry created from user input
+     * @param workoutEntries The list of workout entries already created, used to avoid duplicates
+     * @return A new WorkoutEntry created from user input
      */
-
     public WorkoutEntry createNewWorkoutEntry(List<WorkoutEntry> workoutEntries) {
         String exerciseDone = userInputs.promptText("Introduce the name of the exercise done:");
 
@@ -47,13 +47,13 @@ public class UserController {
     }
 
     /**
-     * Continuously prompts the user to add workout entries until the user decides to stop.
+     * Prompts the user to create multiple workout entries in sequence.
+     * Continues to prompt until the user chooses to stop.
      *
-     * @return a list of WorkoutEntry objects collected from the user
+     * @return A list of WorkoutEntry objects collected from user input
      */
     public List<WorkoutEntry> buildWorkoutEntryList() {
         List<WorkoutEntry> workoutEntries = new ArrayList<>();
-        List<String> exercisesIntroduced = new ArrayList<>();
 
         while (true) {
             workoutEntries.add(createNewWorkoutEntry(workoutEntries));
@@ -69,18 +69,21 @@ public class UserController {
     }
 
     /**
-     * Creates a new {@link Workout} object with the provided list of workout entries,
-     * a workout title, and workout notes as entered by the user.
-     * The current date and time is automatically assigned to the workout.
+     * Collects user input to build a complete Workout object.
+     * This includes the workout title, notes, list of entries, and the current date and time.
      *
-     * @return a new Workout object with the specified data
+     * @return A new Workout object based on user input
      */
     public Workout createNewWorkout() {
-
         String workoutTitle = userInputs.promptText("Introduce the name of the workout: ");
         String workoutNotes = userInputs.promptText("Introduce the notes for the workout: ");
         List<WorkoutEntry> workoutEntries = this.buildWorkoutEntryList();
 
-        return new WorkoutController().workoutBuilder(workoutEntries, workoutTitle, workoutNotes, dateParser.getCurrentDateTimeFormatted(1));
+        return new WorkoutController().workoutBuilder(
+                workoutEntries,
+                workoutTitle,
+                workoutNotes,
+                dateParser.getCurrentDateTimeFormatted(1)
+        );
     }
 }
