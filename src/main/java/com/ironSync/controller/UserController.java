@@ -4,6 +4,7 @@ import com.ironSync.model.Workout;
 import com.ironSync.util.ParseDate;
 import com.ironSync.model.WorkoutEntry;
 import com.ironSync.util.UserInputs;
+import com.ironSync.helpers.ExerciseManager;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -19,6 +20,7 @@ public class UserController {
     private final Scanner scanner = new Scanner(System.in);
     private final UserInputs userInputs = new UserInputs();
     private final ParseDate dateParser = new ParseDate();
+    private final ExerciseManager exerciseManager = new ExerciseManager();
 
     /**
      * Prompts the user to input data for a single workout entry and returns a new WorkoutEntry object.
@@ -42,6 +44,8 @@ public class UserController {
         List<Integer> repsPerSet = userInputs.repetitionsStringToIntegerList(
                 userInputs.promptText("Introduce the number of repetitions done:"));
         int numberOfSets = repsPerSet.size();
+
+        exerciseDone = exerciseManager.normalizeExerciseName(exerciseDone);
 
         return new WorkoutEntryController().workoutEntryBuilder(exerciseDone, repsPerSet, numberOfSets);
     }

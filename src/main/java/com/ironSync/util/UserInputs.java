@@ -128,4 +128,24 @@ public class UserInputs {
             return Objects.equals(userInput, validOptionsList.getFirst());
         }
     }
+
+    public String removeIntermediateWhitespaceCharacters(String stringToProcess) {
+        StringBuilder result = new StringBuilder();
+        boolean lastCharWasSpace = false;
+
+        for (int i = 0; i < stringToProcess.length(); i++) {
+            char c = stringToProcess.charAt(i);
+            if (c == ' ') {
+                if (!lastCharWasSpace) {
+                    result.append(c);
+                    lastCharWasSpace = true;
+                }
+            } else {
+                result.append(c);
+                lastCharWasSpace = false;
+            }
+        }
+
+        return result.toString();
+    }
 }
