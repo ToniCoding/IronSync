@@ -27,6 +27,8 @@
 - Added `WorkoutDTO`, a dedicated Data Transfer Object for encapsulating workout data to be serialized into JSON.
 - Implemented `JsonSerializer`, a utility class responsible for converting DTOs into properly structured JSON.
 - Added a method to serialize and persist workout data into a JSON file inside the `user_data` directory.
+- Added helpers package.
+- Added `ExerciseManager` file in charge of converting friendly exercise names from user to internal identifiers.
 - Added "Pending" and "Known issues" sections to README.
 
 ### Fixed
