@@ -7,8 +7,5 @@ public class Main {
     public static void main(String[] args) {
         UserController userController = new UserController();
         Workout createdWorkoutEntry = userController.createNewWorkout();
-
-
-        System.out.println(createdWorkoutEntry);
     }
 }

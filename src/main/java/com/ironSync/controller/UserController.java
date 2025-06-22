@@ -8,6 +8,8 @@ import com.ironSync.util.UserInputs;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 /**
  * Controller class responsible for handling user input related to workouts and workout entries.
@@ -24,13 +26,24 @@ public class UserController {
      *
      * @return a new WorkoutEntry created from user input
      */
-    public WorkoutEntry createNewWorkoutEntry() {
-        String exerciseDone = userInputs.promptText("Introduce the name of the exercise done:");
-        List<Integer> numberOfReps = userInputs.repetitionsStringToIntegerList(
-                userInputs.promptText("Introduce the number of repetitions done:"));
-        int numberOfSets = numberOfReps.size();
 
-        return new WorkoutEntryController().workoutEntryBuilder(exerciseDone, numberOfReps, numberOfSets);
+    public WorkoutEntry createNewWorkoutEntry(List<WorkoutEntry> workoutEntries) {
+        String exerciseDone = userInputs.promptText("Introduce the name of the exercise done:");
+
+        Set<String> existingExerciseNames = workoutEntries.stream()
+                .map(entry -> entry.getExercise().getName())
+                .collect(Collectors.toSet());
+
+        while (existingExerciseNames.contains(exerciseDone)) {
+            System.out.println("This exercise is already in the workout.");
+            exerciseDone = userInputs.promptText("Introduce the name of the exercise done:");
+        }
+
+        List<Integer> repsPerSet = userInputs.repetitionsStringToIntegerList(
+                userInputs.promptText("Introduce the number of repetitions done:"));
+        int numberOfSets = repsPerSet.size();
+
+        return new WorkoutEntryController().workoutEntryBuilder(exerciseDone, repsPerSet, numberOfSets);
     }
 
     /**
@@ -40,9 +53,10 @@ public class UserController {
      */
     public List<WorkoutEntry> buildWorkoutEntryList() {
         List<WorkoutEntry> workoutEntries = new ArrayList<>();
+        List<String> exercisesIntroduced = new ArrayList<>();
 
         while (true) {
-            workoutEntries.add(createNewWorkoutEntry());
+            workoutEntries.add(createNewWorkoutEntry(workoutEntries));
 
             userInputs.promptTextWithOptions("Do you want to add another workout entry? (Y/n)", "y,n");
 

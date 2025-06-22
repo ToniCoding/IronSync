@@ -23,25 +23,24 @@
 ## [1.1.0] - Unreleased
 
 ### Added
-- Added new directory called `user_data` to store workouts and data from the user.
-- Added `WorkoutDTO` a DTO dedicated to allocate data that is going to be serialized and transferred to JSON file.
-- Added `JsonSerializer` a class dedicated to serialize DTOs into JSON with a correct structure.
-- Added a new method to serialize and register an object into the user workout JSON file (file made for workout persistence).
+- Created a new directory named `user_data` to store workout sessions and user-related data.
+- Added `WorkoutDTO`, a dedicated Data Transfer Object for encapsulating workout data to be serialized into JSON.
+- Implemented `JsonSerializer`, a utility class responsible for converting DTOs into properly structured JSON.
+- Added a method to serialize and persist workout data into a JSON file inside the `user_data` directory.
 
 ### Fixed
-- Fixed `createStorageFile` as it was not checking correctly if the `user_data` directory was being correctly created.
-- Fixed `Workout` constructor length checks as it was checking that the character were shorter than the length rules.
-- Fixed a bug where if the user wanted to register another exercise, the program would throw an exception.
+- Corrected `createStorageFile` logic to properly check whether the `user_data` directory is being created successfully.
+- Fixed `Workout` constructor length checks, which were previously validating incorrect character limits.
+- Resolved a bug where attempting to register an additional exercise could throw an exception.
 
 ### Changed
-- The constant `USER_WORKOUT_DATA_PATH` at *AppConstants* now points to the newly created directory `user_data`.
-- The method `writeToFile` no longer uses *FileWriter*, now uses *BufferedWriter* to be more efficient.
-- Updated build.gradle to mark as sources root directory `java` and not `src`.
-- User is no longer required to prompt the number of sets as it's automatically calculated with repetitions.
-- Refactor `UserController.createNewWorkout` to not receive arguments and build the workout entry list inside it. Makes Main clearer.
-- The register of the exercise is now done in `UserController`.
-- Updated README.
-- Updated .gitignore.
+- Updated the constant `USER_WORKOUT_DATA_PATH` in `AppConstants` to reflect the new `user_data` directory.
+- Replaced `FileWriter` with `BufferedWriter` in `writeToFile` for improved I/O efficiency.
+- Updated `build.gradle` to mark the `java` directory as the source root instead of `src`.
+- The number of sets is now automatically derived from the repetitions input; users no longer input sets manually.
+- Refactored `UserController.createNewWorkout` to handle workout entry creation internally, improving clarity in `Main`.
+- Moved exercise registration logic into `UserController` for better cohesion.
+- Updated `README.md` and `.gitignore` accordingly.
 
 ### Pending tasks
-- 
+- Refactor code to inject dependencies (like builder/controller classes) via constructor or arguments instead of direct instantiation with `new`, to improve modularity and testability.
