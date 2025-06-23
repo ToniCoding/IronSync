@@ -8,10 +8,18 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * Manages the available exercises and provides utility methods
+ * to normalize exercise names and retrieve them.
+ */
 public class ExerciseManager {
     private final UserInputs userInputs = new UserInputs();
     private final Map<String, Exercise> exerciseMap = new HashMap<>();
 
+    /**
+     * Constructs the ExerciseManager and loads default exercises
+     * into a map using their normalized names as keys.
+     */
     public ExerciseManager() {
         List<Exercise> exercises = ExercisesLoader.loadDefaultExercises();
 
@@ -21,14 +29,34 @@ public class ExerciseManager {
         }
     }
 
+    /**
+     * Normalizes the name of an exercise by trimming it,
+     * removing intermediate whitespaces, converting to lowercase,
+     * and replacing spaces with underscores.
+     *
+     * @param name The raw exercise name.
+     * @return A normalized string suitable for lookups.
+     */
     public String normalizeExerciseName(String name) {
         return userInputs.removeIntermediateWhitespaceCharacters(name.trim()).toLowerCase().replace(" ", "_");
     }
 
+    /**
+     * Checks if an exercise with the given normalized name exists.
+     *
+     * @param normalizedName The normalized exercise name.
+     * @return True if the exercise exists, false otherwise.
+     */
     public boolean exerciseExists(String normalizedName) {
         return exerciseMap.containsKey(normalizedName);
     }
 
+    /**
+     * Retrieves the Exercise object associated with the given normalized name.
+     *
+     * @param normalizedName The normalized exercise name.
+     * @return The corresponding Exercise object, or null if not found.
+     */
     public Exercise getExercise(String normalizedName) {
         return exerciseMap.get(normalizedName);
     }
