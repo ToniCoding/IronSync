@@ -41,11 +41,17 @@ public class UserController {
             exerciseDone = userInputs.promptText("Introduce the name of the exercise done:");
         }
 
+        System.out.println(exerciseManager.exerciseExists(exerciseDone));
+
+        if (!exerciseManager.exerciseExists(exerciseDone)) {
+            throw new IllegalArgumentException("The introduced exercise does not exist.");
+        }
+
+        exerciseDone = exerciseManager.normalizeExerciseName(exerciseDone);
+
         List<Integer> repsPerSet = userInputs.repetitionsStringToIntegerList(
                 userInputs.promptText("Introduce the number of repetitions done:"));
         int numberOfSets = repsPerSet.size();
-
-        exerciseDone = exerciseManager.normalizeExerciseName(exerciseDone);
 
         return new WorkoutEntryController().workoutEntryBuilder(exerciseDone, repsPerSet, numberOfSets);
     }
@@ -60,10 +66,14 @@ public class UserController {
         List<WorkoutEntry> workoutEntries = new ArrayList<>();
 
         while (true) {
-            workoutEntries.add(createNewWorkoutEntry(workoutEntries));
+            try {
+                workoutEntries.add(createNewWorkoutEntry(workoutEntries));
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+                continue;
+            }
 
             userInputs.promptTextWithOptions("Do you want to add another workout entry? (Y/n)", "y,n");
-
             String userDecision = scanner.nextLine();
 
             if (!userInputs.processUserInputFromTwoOptions("y,n", userDecision)) {
@@ -71,6 +81,7 @@ public class UserController {
             }
         }
     }
+
 
     /**
      * Collects user input to build a complete Workout object.

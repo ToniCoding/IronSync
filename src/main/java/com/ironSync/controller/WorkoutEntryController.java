@@ -2,6 +2,7 @@ package com.ironSync.controller;
 
 import com.ironSync.model.Exercise;
 import com.ironSync.model.WorkoutEntry;
+import com.ironSync.helpers.ExerciseManager;
 
 import java.util.List;
 
@@ -9,6 +10,7 @@ import java.util.List;
  * Controller class for managing WorkoutEntry creation and validation.
  */
 public class WorkoutEntryController {
+    private final ExerciseManager exerciseManager = new ExerciseManager();
 
     /**
      * Retrieves detailed information about an exercise given its name.
