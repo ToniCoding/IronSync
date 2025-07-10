@@ -146,6 +146,8 @@ public class UserInputs {
             }
         }
 
-        return result.toString();
+        System.out.println(result.toString());
+
+        return result.toString().replace(" ", "_");
     }
 }

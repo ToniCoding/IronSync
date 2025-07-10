@@ -24,36 +24,40 @@ public class UserController {
 
     /**
      * Prompts the user to input data for a single workout entry and returns a new WorkoutEntry object.
-     * Ensures that the exercise name is unique within the current workout.
+     * This method ensures:
+     * - The exercise entered by the user exists in the system's exercise database.
+     * - The exercise is not already included in the current workout to avoid duplicates.
+     * - Repetitions are requested from the user and the number of sets is calculated automatically.
+     * It continues prompting the user until a valid, existing, and unique exercise is provided.
      *
-     * @param workoutEntries The list of workout entries already created, used to avoid duplicates
-     * @return A new WorkoutEntry created from user input
+     * @param workoutEntries The list of workout entries already created, used to check for duplicates.
+     * @return A new WorkoutEntry created from validated user input.
      */
     public WorkoutEntry createNewWorkoutEntry(List<WorkoutEntry> workoutEntries) {
-        String exerciseDone = userInputs.promptText("Introduce the name of the exercise done:");
-
         Set<String> existingExerciseNames = workoutEntries.stream()
                 .map(entry -> entry.getExercise().getName())
                 .collect(Collectors.toSet());
 
-        while (existingExerciseNames.contains(exerciseDone)) {
-            System.out.println("This exercise is already in the workout.");
-            exerciseDone = userInputs.promptText("Introduce the name of the exercise done:");
+        while (true) {
+            String exerciseDone = userInputs.removeIntermediateWhitespaceCharacters(
+                    userInputs.promptText("Introduce the name of the exercise done:"));
+
+            if (!exerciseManager.exerciseExists(exerciseDone)) {
+                System.out.print("The introduced exercise does not exist.");
+                continue;
+            }
+
+            if (existingExerciseNames.contains(exerciseDone)) {
+                System.out.print("The introduced exercise is already in the workout.");
+                continue;
+            }
+
+            List<Integer> repsPerSet = userInputs.repetitionsStringToIntegerList(
+                    userInputs.promptText("Introduce the number of repetitions done:"));
+            int numberOfSets = repsPerSet.size();
+
+            return new WorkoutEntryController().workoutEntryBuilder(exerciseDone, repsPerSet, numberOfSets);
         }
-
-        System.out.println(exerciseManager.exerciseExists(exerciseDone));
-
-        if (!exerciseManager.exerciseExists(exerciseDone)) {
-            throw new IllegalArgumentException("The introduced exercise does not exist.");
-        }
-
-        exerciseDone = exerciseManager.normalizeExerciseName(exerciseDone);
-
-        List<Integer> repsPerSet = userInputs.repetitionsStringToIntegerList(
-                userInputs.promptText("Introduce the number of repetitions done:"));
-        int numberOfSets = repsPerSet.size();
-
-        return new WorkoutEntryController().workoutEntryBuilder(exerciseDone, repsPerSet, numberOfSets);
     }
 
     /**

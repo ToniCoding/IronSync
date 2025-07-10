@@ -24,21 +24,9 @@ public class ExerciseManager {
         List<Exercise> exercises = ExercisesLoader.loadDefaultExercises();
 
         for (Exercise exercise : exercises) {
-            String normalized = normalizeExerciseName(exercise.getName());
+            String normalized = userInputs.removeIntermediateWhitespaceCharacters(exercise.getName());
             exerciseMap.put(normalized, exercise);
         }
-    }
-
-    /**
-     * Normalizes the name of an exercise by trimming it,
-     * removing intermediate whitespaces, converting to lowercase,
-     * and replacing spaces with underscores.
-     *
-     * @param name The raw exercise name.
-     * @return A normalized string suitable for lookups.
-     */
-    public String normalizeExerciseName(String name) {
-        return userInputs.removeIntermediateWhitespaceCharacters(name.trim()).toLowerCase().replace(" ", "_");
     }
 
     /**

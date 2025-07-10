@@ -35,6 +35,7 @@
 - Corrected `createStorageFile` logic to properly check whether the `user_data` directory is being created successfully.
 - Fixed `Workout` constructor length checks, which were previously validating incorrect character limits.
 - Resolved a bug where attempting to register an additional exercise could throw an exception.
+- Fixed a bug in createNewWorkoutEntry that caused the input for a new exercise not to be sanitized if the user previously entered an exercise that already existed.
 
 ### Changed
 - Updated the constant `USER_WORKOUT_DATA_PATH` in `AppConstants` to reflect the new `user_data` directory.
@@ -45,13 +46,17 @@
 - Moved exercise registration logic into `UserController` for better cohesion.
 - Updated `README.md` and `.gitignore` accordingly.
 - Minor changes to `FileManager`.
+- Refactor of `createNewWorkoutEntry` to avoid variable re-assignation and consistent data about the exercise.
 
 ### Removed
 - Removed the deprecated method `registered_data` in `FileManager`.
 - Removed `ObjectUtils` class.
+- Removed duplicated method to normalize user input in `UserController`.
 
 ### Known issues
 - Time is set to null because the data transferred to `WorkoutDTO` is the current datetime, and it's not separated.
+- Normalize friendly exercises name does not work with multiple word exercises.
 
 ### Pending tasks
 - Refactor code to inject dependencies (like builder/controller classes) via constructor or arguments instead of direct instantiation with `new`, to improve modularity and testability.
+- Remove command line print of the result of checking for the exercise.
