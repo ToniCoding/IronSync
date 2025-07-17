@@ -23,12 +23,12 @@ public class WorkoutController {
      * @param workoutDate    The workout date as a formatted string
      * @return A new Workout object built with the specified data
      */
-    public Workout workoutBuilder(List<WorkoutEntry> workoutEntries, String workoutTitle, String workoutNotes, String workoutDate) {
-        Workout createdWorkout = new Workout(workoutEntries, workoutTitle, workoutNotes, workoutDate);
+    public Workout workoutBuilder(List<WorkoutEntry> workoutEntries, String workoutTitle, String workoutNotes, String workoutDate, String workoutTime) {
+        Workout createdWorkout = new Workout(workoutEntries, workoutTitle, workoutNotes, workoutDate, workoutTime);
         WorkoutDTO workoutDTO = new WorkoutDTO(createdWorkout);
         registerWorkout(workoutDTO);
 
-        return new Workout(workoutEntries, workoutTitle, workoutNotes, workoutDate);
+        return new Workout(workoutEntries, workoutTitle, workoutNotes, workoutDate, workoutTime);
     }
 
     /**

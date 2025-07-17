@@ -43,12 +43,12 @@ public class UserController {
                     userInputs.promptText("Introduce the name of the exercise done:"));
 
             if (!exerciseManager.exerciseExists(exerciseDone)) {
-                System.out.print("The introduced exercise does not exist.");
+                System.out.print("The introduced exercise does not exist.\n");
                 continue;
             }
 
             if (existingExerciseNames.contains(exerciseDone)) {
-                System.out.print("The introduced exercise is already in the workout.");
+                System.out.print("The introduced exercise is already in the workout.\n");
                 continue;
             }
 
@@ -102,7 +102,8 @@ public class UserController {
                 workoutEntries,
                 workoutTitle,
                 workoutNotes,
-                dateParser.getCurrentDateTimeFormatted(1)
+                dateParser.getCurrentDateAndTimeFormatted(3),
+                dateParser.getCurrentDateAndTimeFormatted(4)
         );
     }
 }

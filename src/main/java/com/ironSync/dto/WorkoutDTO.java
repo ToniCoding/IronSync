@@ -28,6 +28,7 @@ public class WorkoutDTO {
         this.name = workout.getTrainingTitle();
         this.notes = workout.getTrainingNotes();
         this.date = workout.getTrainingDate();
+        this.time = workout.getTrainingTime();
         this.workoutEntries = workout.getWorkoutEntries();
     }
 

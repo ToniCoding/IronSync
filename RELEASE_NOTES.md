@@ -22,6 +22,8 @@
 
 ## [1.1.0] - Unreleased
 
+> *v1.1.0 – Data Persistence & Exercise Overhaul*
+
 ### Added
 - Created a new directory named `user_data` to store workout sessions and user-related data.
 - Added `WorkoutDTO`, a dedicated Data Transfer Object for encapsulating workout data to be serialized into JSON.
@@ -29,6 +31,7 @@
 - Added a method to serialize and persist workout data into a JSON file inside the `user_data` directory.
 - Added helpers package.
 - Added `ExerciseManager` file in charge of converting friendly exercise names from user to internal identifiers.
+- Added two more options to get the time and date in `ParseDate`.
 - Added "Pending" and "Known issues" sections to README.
 
 ### Fixed
@@ -36,6 +39,7 @@
 - Fixed `Workout` constructor length checks, which were previously validating incorrect character limits.
 - Resolved a bug where attempting to register an additional exercise could throw an exception.
 - Fixed a bug in createNewWorkoutEntry that caused the input for a new exercise not to be sanitized if the user previously entered an exercise that already existed.
+- Fixed a bug that was setting the time field to null instead of the corresponding time.
 
 ### Changed
 - Updated the constant `USER_WORKOUT_DATA_PATH` in `AppConstants` to reflect the new `user_data` directory.
@@ -46,7 +50,10 @@
 - Moved exercise registration logic into `UserController` for better cohesion.
 - Updated `README.md` and `.gitignore` accordingly.
 - Minor changes to `FileManager`.
+- Refactor of the method used to get the date, time and datetime to be more clear. New name: `getCurrentDateAndTimeFormatted`.
 - Refactor of `createNewWorkoutEntry` to avoid variable re-assignation and consistent data about the exercise.
+- `WorkoutDTO` now returns the workout ending date.
+- `Workout` cascade now accepts time as an argument.
 
 ### Removed
 - Removed the deprecated method `registered_data` in `FileManager`.
@@ -54,9 +61,7 @@
 - Removed duplicated method to normalize user input in `UserController`.
 
 ### Known issues
-- Time is set to null because the data transferred to `WorkoutDTO` is the current datetime, and it's not separated.
 - Normalize friendly exercises name does not work with multiple word exercises.
 
 ### Pending tasks
 - Refactor code to inject dependencies (like builder/controller classes) via constructor or arguments instead of direct instantiation with `new`, to improve modularity and testability.
-- Remove command line print of the result of checking for the exercise.

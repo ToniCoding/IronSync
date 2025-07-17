@@ -13,6 +13,7 @@ public class Workout {
     private String trainingTitle;
     private String trainingNotes;
     private String trainingDate;
+    private String trainingTime;
 
     /**
      * Default constructor.
@@ -28,7 +29,7 @@ public class Workout {
      * @param trainingNotes The notes about the training session.
      * @param trainingDate  The date the workout took place.
      */
-    public Workout(List<WorkoutEntry> workoutEntries, String trainingTitle, String trainingNotes, String trainingDate) {
+    public Workout(List<WorkoutEntry> workoutEntries, String trainingTitle, String trainingNotes, String trainingDate, String trainingTime) {
         if (workoutEntries.isEmpty()) {
             throw new IllegalArgumentException("There are no registered exercises in the workout.");
         }
@@ -45,6 +46,7 @@ public class Workout {
         this.trainingTitle = trainingTitle;
         this.trainingNotes = trainingNotes;
         this.trainingDate = trainingDate;
+        this.trainingTime = trainingTime;
     }
 
     /**
@@ -84,6 +86,15 @@ public class Workout {
     }
 
     /**
+     * Gets the training time
+     *
+     * @return A string containing the training time
+     */
+    public String getTrainingTime() {
+        return this.trainingTime;
+    }
+
+    /**
      * Sets the workout entry.
      *
      * @param workoutEntries The WorkoutEntry to set.
@@ -120,6 +131,15 @@ public class Workout {
     }
 
     /**
+     * Sets the training time.
+     *
+     * @param trainingTime The date to set.
+     */
+    public void setTrainingTime(String trainingTime) {
+        this.trainingTime = trainingTime;
+    }
+
+    /**
      * Returns a string representation of the Workout object.
      *
      * @return A formatted string with the workout details.
@@ -130,6 +150,7 @@ public class Workout {
                 "workoutEntry = " + workoutEntries +
                 ", trainingNotes = " + trainingNotes +
                 ", trainingDate = " + trainingDate +
+                ", trainingTime = " + trainingTime +
                 "}";
     }
 }
