@@ -1,6 +1,6 @@
-package main.java.com.ironSync.util;
+package com.ironSync.util;
 
-import main.java.com.ironSync.exceptions.Exceptions;
+import com.ironSync.exceptions.Exceptions;
 
 import java.util.List;
 import java.util.Arrays;
@@ -84,12 +84,12 @@ public class UserInputs {
      *
      * @param questionToUser The question to be displayed before the options.
      * @param availableOptions A comma-separated string of available options.
-     * @return A string showing the question followed by numbered options, each on its own line.
      */
-    public String promptTextWithOptions(String questionToUser, String availableOptions) {
+    public void promptTextWithOptions(String questionToUser, String availableOptions) {
         List<String> availableOptionsArray = Arrays.stream(availableOptions.split(","))
                 .map(String::trim)
                 .toList();
+
         List<Integer> optionsNumerals = numberUtils.generateNumbersUntilLimit(availableOptionsArray.size());
         StringBuilder userVisibleOptions = new StringBuilder(questionToUser).append("\n");
 
@@ -100,7 +100,7 @@ public class UserInputs {
                     .append("\n");
         }
 
-        return userVisibleOptions.toString();
+        System.out.println(userVisibleOptions);
     }
 
     /**
@@ -125,7 +125,27 @@ public class UserInputs {
         if (!validOptionsList.contains(userInput)) {
             throw new Exceptions.InvalidOptionException("The user input is not between the valid options.");
         } else {
-            return Objects.equals(userInput, validOptionsList.get(0));
+            return Objects.equals(userInput, validOptionsList.getFirst());
         }
+    }
+
+    public String removeIntermediateWhitespaceCharacters(String stringToProcess) {
+        StringBuilder result = new StringBuilder();
+        boolean lastCharWasSpace = false;
+
+        for (int i = 0; i < stringToProcess.length(); i++) {
+            char c = stringToProcess.charAt(i);
+            if (c == ' ') {
+                if (!lastCharWasSpace) {
+                    result.append(c);
+                    lastCharWasSpace = true;
+                }
+            } else {
+                result.append(c);
+                lastCharWasSpace = false;
+            }
+        }
+
+        return result.toString().replace(" ", "_");
     }
 }

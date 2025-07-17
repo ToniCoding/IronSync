@@ -1,4 +1,4 @@
-package main.java.com.ironSync.storage;
+package com.ironSync.storage;
 
 // To be developed when databases are implemented.
 

@@ -1,9 +1,9 @@
-package main.java.com.ironSync.data;
+package com.ironSync.data;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import main.java.com.ironSync.config.AppConstants;
-import main.java.com.ironSync.model.Exercise;
+import com.ironSync.config.AppConstants;
+import com.ironSync.model.Exercise;
 
 import java.io.InputStream;
 import java.util.Collections;

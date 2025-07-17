@@ -1,7 +1,8 @@
-package main.java.com.ironSync.controller;
+package com.ironSync.controller;
 
-import main.java.com.ironSync.model.Exercise;
-import main.java.com.ironSync.model.WorkoutEntry;
+import com.ironSync.model.Exercise;
+import com.ironSync.model.WorkoutEntry;
+import com.ironSync.helpers.ExerciseManager;
 
 import java.util.List;
 
@@ -9,6 +10,7 @@ import java.util.List;
  * Controller class for managing WorkoutEntry creation and validation.
  */
 public class WorkoutEntryController {
+    private final ExerciseManager exerciseManager = new ExerciseManager();
 
     /**
      * Retrieves detailed information about an exercise given its name.
@@ -46,6 +48,7 @@ public class WorkoutEntryController {
         if (!verifyRepetitionsLength(nReps, nSets)) {
             throw new IllegalArgumentException("Length of repetitions list must match number of sets.");
         }
+
         return new WorkoutEntry(getExerciseDetails(exerciseDone), nReps, nSets);
     }
 }

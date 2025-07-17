@@ -1,4 +1,4 @@
-package main.java.com.ironSync.util;
+package com.ironSync.util;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -37,10 +37,12 @@ public class ParseDate {
      * @return A string representing the formatted current date and time.
      * @throws IllegalArgumentException if the formatRequested is invalid.
      */
-    public String getCurrentDateTimeFormatted(int formatRequested) {
+    public String getCurrentDateAndTimeFormatted(int formatRequested) {
         return switch (formatRequested) {
             case 1 -> getCurrentDate() + " " + getCurrentTime();
             case 2 -> getCurrentTime() + " " + getCurrentDate();
+            case 3 -> getCurrentDate();
+            case 4 -> getCurrentTime();
             default -> throw new IllegalArgumentException("Invalid format option: " + formatRequested);
         };
     }

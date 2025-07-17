@@ -1,7 +1,7 @@
-package main.java.com.ironSync.controller;
+package com.ironSync.controller;
 
-import main.java.com.ironSync.model.Exercise;
-import main.java.com.ironSync.data.ExercisesLoader;
+import com.ironSync.model.Exercise;
+import com.ironSync.data.ExercisesLoader;
 
 import java.util.ArrayList;
 import java.util.List;

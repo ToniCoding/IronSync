@@ -1,10 +1,11 @@
-package main.java.com.ironSync;
+package com.ironSync;
 
-import main.java.com.ironSync.controller.UserController;
+import com.ironSync.controller.UserController;
+import com.ironSync.model.Workout;
 
 public class Main {
     public static void main(String[] args) {
         UserController userController = new UserController();
-        System.out.println(userController.createNewWorkoutEntry());
+        Workout createdWorkoutEntry = userController.createNewWorkout();
     }
 }

@@ -1,4 +1,4 @@
-package main.java.com.ironSync.model;
+package com.ironSync.model;
 
 import java.util.List;
 
