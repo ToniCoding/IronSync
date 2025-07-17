@@ -20,7 +20,7 @@
 ### Changed
 - Refactor of `createNewWorkoutEntry` to avoid creating duplicate Exercise instances.
 
-## [1.1.0] - Unreleased
+## [1.1.0] - 17-07-2025
 
 > *v1.1.0 – Data Persistence & Exercise Overhaul*
 
