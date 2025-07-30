@@ -65,3 +65,8 @@
 
 ### Pending tasks
 - Refactor code to inject dependencies (like builder/controller classes) via constructor or arguments instead of direct instantiation with `new`, to improve modularity and testability.
+
+## [1.1.1] - Unreleased
+
+### Fixed
+- Fixed a bug where user_workout would be serialized with an starting newline and comma.

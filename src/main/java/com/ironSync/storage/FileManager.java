@@ -82,8 +82,6 @@ public class FileManager {
             }
 
             try (BufferedWriter storageFile = new BufferedWriter(new FileWriter(file, true))) {
-                storageFile.write(",");
-                storageFile.newLine();
                 storageFile.write(contents);
 
                 return true;
