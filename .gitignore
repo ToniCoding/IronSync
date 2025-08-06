@@ -7,3 +7,4 @@ user_data/
 out/
 gradlew
 gradlew.bat
+db.properties

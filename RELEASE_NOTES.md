@@ -68,5 +68,9 @@
 
 ## [1.1.1] - Unreleased
 
+### Added
+- Added connection to MySQL databases.
+- Added methods to test and execute queries to MySQL databases.
+
 ### Fixed
-- Fixed a bug where user_workout would be serialized with an starting newline and comma.
+- Fixed a bug where user_workout would be serialized with a starting newline and comma.
