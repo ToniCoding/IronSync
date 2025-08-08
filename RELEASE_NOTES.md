@@ -85,4 +85,4 @@
 
 ### Changed
 - Refactor of User model attribute `uniqueId` to `id` to simplify.
-- Changed 
+- Changed `createStatement` to `prepareStatement` to avoid SQL injection.
