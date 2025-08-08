@@ -5,12 +5,19 @@ package com.ironSync.model;
  * username, password, level, experience, and streak.
  */
 public class User {
-    private int uniqueId;
+    private int id;
     private String username;
     private String password;
-    private int level;
+    private String email;
+    private String role;
+    private String status;
+    private String alias;
+    private int age;
+    private int weight;
+    private int height;
     private int experience;
     private int streak;
+    private int days_trained;
 
     /**
      * Default constructor.
@@ -23,18 +30,20 @@ public class User {
     /**
      * Constructor with parameters to initialize a User object with all its attributes.
      *
-     * @param uniqueId   The unique identifier of the user.
+     * @param id   The unique identifier of the user.
      * @param username   The username.
      * @param password   The user's password.
-     * @param level      The user's level.
+     * @param email      The user's email.
+     * @param alias      The user's alias.
      * @param experience The user's experience.
      * @param streak     The user's training streak.
      */
-    public User(int uniqueId, String username, String password, int level, int experience, int streak) {
-        this.uniqueId = uniqueId;
+    public User(int id, String username, String password, String email, String alias, int experience, int streak) {
+        this.id = id;
         this.username = username;
         this.password = password;
-        this.level = level;
+        this.email = email;
+        this.alias = alias;
         this.experience = experience;
         this.streak = streak;
     }
@@ -44,8 +53,8 @@ public class User {
      *
      * @return The unique identifier.
      */
-    public int getUniqueId() {
-        return uniqueId;
+    public int getId() {
+        return id;
     }
 
     /**
@@ -67,12 +76,66 @@ public class User {
     }
 
     /**
-     * Gets the user's level.
+     * Gets the user email
      *
-     * @return The user's level.
+     * @return The user email.
      */
-    public int getLevel() {
-        return level;
+    public String getEmail() {
+        return email;
+    }
+
+    /**
+     * Gets the user role
+     *
+     * @return The user role.
+     */
+    public String getRole() {
+        return role;
+    }
+
+    /**
+     * Gets the user status
+     *
+     * @return The user status.
+     */
+    public String getStatus() {
+        return status;
+    }
+
+    /**
+     * Gets the user alias
+     *
+     * @return The user alias.
+     */
+    public String getAlias() {
+        return alias;
+    }
+
+    /**
+     * Gets the user age
+     *
+     * @return The user age.
+     */
+    public int getAge() {
+        return age;
+    }
+
+    /**
+     * Gets the user weight
+     *
+     * @return The user weight.
+     */
+    public int getWeight() {
+        return weight;
+    }
+
+    /**
+     * Gets the user height
+     *
+     * @return The user height.
+     */
+    public int getHeight() {
+        return height;
     }
 
     /**
@@ -94,12 +157,21 @@ public class User {
     }
 
     /**
+     * Gets the user's trained days.
+     *
+     * @return The trained days.
+     */
+    public int getDays_trained() {
+        return this.days_trained;
+    }
+
+    /**
      * Sets the unique identifier of the user.
      *
-     * @param uniqueId The new unique identifier.
+     * @param id The new unique identifier.
      */
-    public void setUniqueId(int uniqueId) {
-        this.uniqueId = uniqueId;
+    public void setId(int id) {
+        this.id = id;
     }
 
     /**
@@ -121,12 +193,66 @@ public class User {
     }
 
     /**
-     * Sets the user's level.
+     * Sets the user email.
      *
-     * @param level The new level.
+     * @param email The new amount of email.
      */
-    public void setLevel(int level) {
-        this.level = level;
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    /**
+     * Sets the user role.
+     *
+     * @param role The new user's role.
+     */
+    public void setRole(String role) {
+        this.role = role;
+    }
+
+    /**
+     * Sets the user status.
+     *
+     * @param status The new user's status.
+     */
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
+    /**
+     * Sets the user alias.
+     *
+     * @param alias The new user's alias.
+     */
+    public void setAlias(String alias) {
+        this.alias = alias;
+    }
+
+    /**
+     * Sets the user age.
+     *
+     * @param age The new user's age.
+     */
+    public void setAge(int age) {
+        this.age = age;
+    }
+
+    /**
+     * Sets the user weight.
+     *
+     * @param weight The new amount of weight.
+     */
+    public void setWeight(int weight) {
+        this.weight = weight;
+    }
+
+    /**
+     * Sets the user height.
+     *
+     * @param height The new amount of height.
+     */
+    public void setHeight(int height) {
+        this.height = height;
     }
 
     /**
@@ -148,6 +274,15 @@ public class User {
     }
 
     /**
+     * Sets the user's trained days.
+     *
+     * @param daysTrained The new amount of trained days.
+     */
+    public void setDaysTrained(int daysTrained) {
+        this.days_trained = daysTrained;
+    }
+
+    /**
      * Returns a string representation of the User object.
      *
      * @return A string with the user's details.
@@ -155,11 +290,20 @@ public class User {
     @Override
     public String toString() {
         return "User {" +
-                "UniqueId = " + uniqueId +
-                ", username = " + username +
-                ", level = " + level +
-                ", streak = " + streak +
-                ", experience = " + experience +
-                "}";
+                "id=" + id +
+                ", username='" + username + '\'' +
+                ", password='" + password + '\'' +
+                ", email='" + email + '\'' +
+                ", role='" + role + '\'' +
+                ", status='" + status + '\'' +
+                ", alias='" + alias + '\'' +
+                ", age=" + age +
+                ", weight=" + weight +
+                ", height=" + height +
+                ", experience=" + experience +
+                ", streak=" + streak +
+                ", days_trained=" + days_trained +
+                '}';
     }
+
 }

@@ -71,6 +71,18 @@
 ### Added
 - Added connection to MySQL databases.
 - Added methods to test and execute queries to MySQL databases.
+- Added the following attributes, getters and setters to User model:
+  - Alias.
+  - Email.
+  - Age.
+  - Weight.
+  - Height.
+- Added the functionality to create a user from IronSync at database level.
+- Added `execUpdate` method to interact with any action that requires an update at database level.
 
 ### Fixed
 - Fixed a bug where user_workout would be serialized with a starting newline and comma.
+
+### Changed
+- Refactor of User model attribute `uniqueId` to `id` to simplify.
+- Changed 
