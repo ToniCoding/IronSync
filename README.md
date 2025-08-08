@@ -88,3 +88,11 @@ To view the release notes, please refer to the *RELEASE_NOTES* file.
 
 ## License
 Licensed under the GPL-3.0. Make sure to review the license before use.
+
+## Planned improvements
+### Long term
+- Study the possibility of implementing Java string templates (Java 21).
+
+### Short term
+- Create comprehensive canvas about the software module communication.
+- README overhaul.

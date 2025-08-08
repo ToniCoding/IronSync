@@ -1,0 +1,56 @@
+Table users {
+  id integer [primary key]
+  username varchar [unique]
+  password varchar
+  email varchar [unique]
+  role ENUM('user', 'admin')
+  status ENUM('active', 'inactive', 'banned')
+  alias varchar
+  age integer
+  weight integer
+  height integer
+  experience integer
+  streak integer
+  days_trained integer
+}
+
+Table trainings {
+  id integer [primary key]
+  user_id integer
+  workout_name varchar
+  workout_notes varchar
+  workout_date date
+  workout_time time
+  workout_exercises JSON
+}
+
+Table streak {
+  user_id integer [primary key]
+  streak_days integer
+}
+
+Table exercises {
+  id integer [primary key]
+  name varchar
+  muscle_group varchar
+  description text
+  difficulty ENUM('beginner', 'intermediate', 'advanced')
+  created_at timestamp
+  updated_at timestamp
+}
+
+Table custom_exercises {
+  id integer [primary key]
+  user_id integer
+  name varchar
+  muscle_group varchar
+  description text
+  difficulty ENUM('beginner', 'intermediate', 'advanced')
+  created_at timestamp
+  updated_at timestamp
+}
+
+Ref workout_user_id: users.id - trainings.user_id
+Ref training_streak: users.streak - streak.streak_days
+Ref streak_user_id: users.id - streak.user_id
+Ref custom_ex_user_id: users.id - custom_exercises.user_id
