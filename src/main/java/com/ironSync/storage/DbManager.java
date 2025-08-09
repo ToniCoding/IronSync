@@ -22,7 +22,7 @@ public class DbManager {
         }
     }
 
-    public void execQuery(String sql, Consumer<ResultSet> processor, Object... params) {
+    public boolean execQuery(String sql, Consumer<ResultSet> processor, Object... params) {
         try (Connection conn = DriverManager.getConnection(this.dbUrl, this.dbUser, this.dbPwd);
              PreparedStatement prepStmt = conn.prepareStatement(sql)) {
 
@@ -39,11 +39,18 @@ public class DbManager {
             }
 
             try (ResultSet rs = prepStmt.executeQuery()) {
-                processor.accept(rs);
-            }
+                if (!rs.isBeforeFirst()) {
+                    return false;
+                }
 
+                if (processor != null) {
+                    processor.accept(rs);
+                }
+
+                return true;
+            }
         } catch (SQLException sqlEx) {
-            System.out.println("An error occurred after executing the query: " + sqlEx);
+            throw new IllegalArgumentException("An error occurred after executing the query: " + sqlEx);
         }
     }
 

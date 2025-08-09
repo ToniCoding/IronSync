@@ -3,6 +3,8 @@ package com.ironSync.repository;
 import com.ironSync.storage.DbManager;
 import com.ironSync.model.User;
 
+import java.util.Arrays;
+
 public class UserRepository {
     private final DbManager dbManager = new DbManager();
 
@@ -26,5 +28,29 @@ public class UserRepository {
         }
 
         return false;
+    }
+
+    public boolean userLevelEdit(User user, String editableField, String newValue) {
+        int id = user.getId();
+        String[] validFields = {"username", "password", "email", "alias", "age"};
+
+        if (checkIfUserExists(id) && Arrays.asList(validFields).contains(editableField)) {
+            dbManager.execUpdate(
+                    "UPDATE users SET " + editableField + "= ? WHERE id = ?",
+                    newValue, id
+            );
+
+            return true;
+        }
+
+        return false;
+    }
+
+    private boolean checkIfUserExists(int userId) {
+        return dbManager.execQuery(
+                "SELECT username FROM users WHERE id = ?",
+                null,
+                userId
+        );
     }
 }

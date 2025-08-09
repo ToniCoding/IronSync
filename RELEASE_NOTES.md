@@ -1,6 +1,12 @@
 # Release notes
 
-## [1.0.0] - 23-05-2025
+---
+
+## IronSync 1.0.0
+
+#### *IronSync foundations*
+###### Version goal: IronSync have now the most basic functionalities
+###### Release date: *25-05-2025*
 
 ### Added
 - Basic functionality for the software.
@@ -20,9 +26,13 @@
 ### Changed
 - Refactor of `createNewWorkoutEntry` to avoid creating duplicate Exercise instances.
 
-## [1.1.0] - 17-07-2025
+---
 
-> *v1.1.0 – Data Persistence & Exercise Overhaul*
+## IronSync 1.1.0
+
+#### *Data persistence & Exercise Overhaul*
+###### Version goal: IronSync having data persistence
+###### Release date: *17-07-2025*
 
 ### Added
 - Created a new directory named `user_data` to store workout sessions and user-related data.
@@ -66,7 +76,13 @@
 ### Pending tasks
 - Refactor code to inject dependencies (like builder/controller classes) via constructor or arguments instead of direct instantiation with `new`, to improve modularity and testability.
 
-## [1.1.1] - Unreleased
+---
+
+## IronSync 1.2.0
+
+#### *IronSync DB integration*
+###### Version goal: *IronSync working with databases*
+###### Release date: *Unreleased*
 
 ### Added
 - Added connection to MySQL databases.
@@ -77,7 +93,9 @@
   - Age.
   - Weight.
   - Height.
-- Added the functionality to create a user from IronSync at database level.
+- Added the following functionality for IronSync to interact with `users` table in database:
+  - Add user.
+  - Edit user.
 - Added `execUpdate` method to interact with any action that requires an update at database level.
 
 ### Fixed
@@ -86,3 +104,8 @@
 ### Changed
 - Refactor of User model attribute `uniqueId` to `id` to simplify.
 - Changed `createStatement` to `prepareStatement` to avoid SQL injection.
+
+### Infrastructure
+- Revised application versioning system.
+- Updated version number from 1.1.1 to 1.2.0 to align with the new versioning system.
+
