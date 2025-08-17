@@ -20,8 +20,8 @@ public class UserRepository implements UserRepositoryIntf {
         int height = user.getHeight();
 
         int returnedRows = dbManager.execUpdate(
-                "INSERT INTO users(username, password, email, alias, age, weight, height) VALUES (?, ?, ?, ?, ?, ?, ?)",
-                username, password, email, alias, age, weight, height
+                "INSERT INTO users(username, password, email, alias, age, weight, height, experience) VALUES (?, ?, ?, ?, ?, ?, ?, ?)",
+                username, password, email, alias, age, weight, height, 0
         );
 
         if(returnedRows > 0) {
