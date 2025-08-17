@@ -97,6 +97,10 @@
   - Add user.
   - Edit user.
   - Delete user.
+- Added the following functionality for IronSync to interact with `streak` table in database:
+  - Create a new streak.
+  - Add days to a streak.
+  - Reset a streak.
 - Added `execUpdate` method to interact with any action that requires an update at database level.
 - Implemented an interface to `UserInterface`.
 
