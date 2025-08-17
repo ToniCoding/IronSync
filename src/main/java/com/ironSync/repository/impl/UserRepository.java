@@ -1,13 +1,15 @@
-package com.ironSync.repository;
+package com.ironSync.repository.impl;
 
+import com.ironSync.repository.UserRepositoryIntf;
 import com.ironSync.storage.DbManager;
 import com.ironSync.model.User;
 
 import java.util.Arrays;
 
-public class UserRepository {
+public class UserRepository implements UserRepositoryIntf {
     private final DbManager dbManager = new DbManager();
 
+    @Override
     public boolean create(User user) {
         String username = user.getUsername();
         String password = user.getPassword();
@@ -30,6 +32,7 @@ public class UserRepository {
         return false;
     }
 
+    @Override
     public boolean userLevelEdit(User user, String editableField, String newValue) {
         int id = user.getId();
         String[] validFields = {"username", "password", "email", "alias", "age"};
