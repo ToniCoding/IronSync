@@ -96,10 +96,13 @@
 - Added the following functionality for IronSync to interact with `users` table in database:
   - Add user.
   - Edit user.
+  - Delete user.
 - Added `execUpdate` method to interact with any action that requires an update at database level.
+- Implemented an interface to `UserInterface`.
 
 ### Fixed
 - Fixed a bug where user_workout would be serialized with a starting newline and comma.
+- Fixed a bug where when creating a new user, the experience would be set to `null`.
 
 ### Changed
 - Refactor of User model attribute `uniqueId` to `id` to simplify.

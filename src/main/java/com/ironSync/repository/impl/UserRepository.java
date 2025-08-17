@@ -49,6 +49,13 @@ public class UserRepository implements UserRepositoryIntf {
         return false;
     }
 
+    @Override
+    public boolean delete(User user) {
+        int id = user.getId();
+
+        return checkIfUserExists(id) && dbManager.execUpdate("DELETE FROM users WHERE id = ?", id) >= 1;
+    }
+
     private boolean checkIfUserExists(int userId) {
         return dbManager.execQuery(
                 "SELECT username FROM users WHERE id = ?",
