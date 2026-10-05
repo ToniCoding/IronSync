@@ -2,14 +2,7 @@ package dev.ironsync.entity;
 
 import dev.ironsync.model.Gender;
 import dev.ironsync.model.Role;
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.EnumType;
-import jakarta.persistence.Enumerated;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -26,7 +19,7 @@ import java.util.Objects;
 @Getter
 @Setter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-@AllArgsConstructor
+@AllArgsConstructor(access = AccessLevel.PUBLIC)
 public class User {
 
     @Id
@@ -80,6 +73,11 @@ public class User {
             return 0;
         }
         return Period.between(this.birthDate, LocalDate.now()).getYears();
+    }
+
+    @PrePersist
+    protected void onCreate() {
+        this.registerDate = LocalDateTime.now();
     }
 
     @Override
