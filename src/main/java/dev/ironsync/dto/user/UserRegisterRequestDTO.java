@@ -24,7 +24,7 @@ public record UserRegisterRequestDTO (
     @Size(min = 8, max = 50, message = "Password must be at least 8 characters long")
     String password,
 
-    @NotBlank(message = "Birth date is required")
+    @NotNull(message = "Birth date is required")
     @Past(message = "Birth date must be a date in the past")
     LocalDate birthDate,
 
