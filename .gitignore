@@ -1,7 +1,14 @@
+# Compiled Class Files
 *.class
+
+# Log Files & Runtime Outputs
 *.log
-*.ctxt
-.mtj.tmp/
+*.log.*
+*.out
+*.tmp
+*.temp
+
+# Package & Archive Formats
 *.jar
 *.war
 *.nar
@@ -9,28 +16,40 @@
 *.zip
 *.tar.gz
 *.rar
+
+# JVM Crash Logs
 hs_err_pid*
 replay_pid*
+
+# IntelliJ IDEA Project Files
 .idea/
 *.iml
 *.ipr
 *.iws
+
+# VS Code Metadata
 .vscode/
+
+# Editor & System Backup Files
 *.swp
 *~
+
+# Build Output Directories
 target/
 build/
 bin/
 out/
+
+# Maven Wrapper Executable Jar (Keep script wrappers checked in)
 .mvn/wrapper/maven-wrapper.jar
+
+# Operating System Metadata
 .DS_Store
 Thumbs.db
 Desktop.ini
+
+# Environment Files & Local Properties Overrides
 .env
 .env.local
+.env.*
 *.properties.local
-*.log.*
-*.out
-*.tmp
-*.temp
-application.properties
