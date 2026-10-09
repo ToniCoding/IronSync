@@ -16,9 +16,9 @@ public interface ExerciseRepository extends JpaRepository<Exercise, Long> {
 
     Optional<Exercise> findByNameIgnoreCase(String name);
 
-    List<Exercise> findByTargetMuscle(MuscleGroup targetMuscle);
+    List<Exercise> findByTargetMuscles(MuscleGroup targetMuscles);
 
     List<Exercise> findByEquipmentNeeded(EquipmentType equipmentNeeded);
 
-    List<Exercise> findByTargetMuscleAndEquipmentNeeded(MuscleGroup targetMuscle, EquipmentType equipmentNeeded);
+    List<Exercise> findByTargetMusclesAndEquipmentNeeded(MuscleGroup targetMuscles, EquipmentType equipmentNeeded);
 }
