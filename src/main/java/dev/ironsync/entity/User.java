@@ -9,8 +9,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.time.Instant;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.time.Period;
 import java.util.Objects;
 
@@ -51,10 +51,10 @@ public class User {
     private boolean enabled = true;
 
     @Column(name = "register_date", nullable = false, updatable = false)
-    private LocalDateTime registerDate = LocalDateTime.now();
+    private Instant registerDate = Instant.now();
 
     @Column(name = "last_login")
-    private LocalDateTime lastLogin;
+    private Instant lastLogin;
 
     // Custom constructor for manual creation without generated fields
     public User(String username, String email, String password, LocalDate birthDate, Gender gender, Role role) {
@@ -64,10 +64,10 @@ public class User {
         this.birthDate = birthDate;
         this.gender = gender;
         this.role = role != null ? role : Role.USER;
-        this.registerDate = LocalDateTime.now();
+        this.registerDate = Instant.now();
     }
 
-    // Dynamic Derived Attribute (Computed on demand to stay up to date)
+    // Dynamic Derived Attribute (computed on demand to stay up to date)
     public int getAge() {
         if (this.birthDate == null) {
             return 0;
@@ -77,7 +77,7 @@ public class User {
 
     @PrePersist
     protected void onCreate() {
-        this.registerDate = LocalDateTime.now();
+        this.registerDate = Instant.now();
     }
 
     @Override

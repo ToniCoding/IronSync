@@ -4,6 +4,7 @@ import dev.ironsync.dto.user.UserRegisterRequestDTO;
 import dev.ironsync.dto.user.UserRegisterResponseDTO;
 import dev.ironsync.entity.User;
 import dev.ironsync.repository.UserRepository;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.transaction.annotation.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -12,6 +13,7 @@ import org.springframework.stereotype.Service;
 @RequiredArgsConstructor
 public class UserService {
     private final UserRepository userRepository;
+    private final PasswordEncoder passwordEncoder;
 
     @Transactional
     public UserRegisterResponseDTO register(
@@ -35,7 +37,7 @@ public class UserService {
         return new User(
             userRegisterRequestDTO.username(),
             userRegisterRequestDTO.email(),
-            userRegisterRequestDTO.password(),
+            passwordEncoder.encode(userRegisterRequestDTO.password()),
             userRegisterRequestDTO.birthDate(),
             userRegisterRequestDTO.gender(),
             userRegisterRequestDTO.role()

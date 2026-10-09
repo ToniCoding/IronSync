@@ -1,13 +1,14 @@
 package dev.ironsync.dto.user;
 
 import dev.ironsync.entity.User;
-import java.time.LocalDateTime;
+
+import java.time.Instant;
 
 public record UserRegisterResponseDTO (
         Long id,
         String username,
         String email,
-        LocalDateTime registerDate
+        Instant registerDate
 ) {
     public static UserRegisterResponseDTO fromEntity(User user) {
         return new UserRegisterResponseDTO(
