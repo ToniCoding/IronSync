@@ -23,7 +23,7 @@ import java.util.Objects;
 @NoArgsConstructor
 @Getter
 @Setter
-public class Exercise {
+public class Exercise extends AuditableEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;

@@ -25,7 +25,7 @@ import java.util.Objects;
 @Setter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @AllArgsConstructor(access = AccessLevel.PUBLIC)
-public class User implements UserDetails {
+public class User extends AuditableEntity implements UserDetails {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -55,9 +55,6 @@ public class User implements UserDetails {
     @Column(nullable = false)
     private boolean enabled = true;
 
-    @Column(name = "register_date", nullable = false, updatable = false)
-    private Instant registerDate = Instant.now();
-
     @Column(name = "last_login")
     private Instant lastLogin;
 
@@ -69,7 +66,6 @@ public class User implements UserDetails {
         this.birthDate = birthDate;
         this.gender = gender;
         this.role = role != null ? role : Role.USER;
-        this.registerDate = Instant.now();
     }
 
     // Dynamic Derived Attribute (computed on demand to stay up to date)
@@ -78,11 +74,6 @@ public class User implements UserDetails {
             return 0;
         }
         return Period.between(this.birthDate, LocalDate.now()).getYears();
-    }
-
-    @PrePersist
-    protected void onCreate() {
-        this.registerDate = Instant.now();
     }
 
     // ===================================================================
